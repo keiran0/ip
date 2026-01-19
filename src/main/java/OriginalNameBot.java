@@ -48,10 +48,7 @@ public class OriginalNameBot {
             if (taskTypes.contains(splitted[0])) {
                 addTask(splitted[0], input.replace(splitted[0] + " ", ""));
             } else {
-                Task newTask = new Task(input);
-                tasks.add(newTask);
-                numTasks++;
-                System.out.println("added: " + input);
+                addTask("", input);
             }
         }
 
