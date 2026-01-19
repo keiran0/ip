@@ -6,6 +6,7 @@ public class OriginalNameBot {
 
     public static List<Task> tasks = new ArrayList<>();
     public static int numTasks = 0;
+    public static List<String> taskTypes = new ArrayList<>(List.of("todo", "deadline", "event"));
 
     public static void main(String[] args) {
         System.out.println("Hello from original name bot! As you can see, this is a very original name. \n");
@@ -34,14 +35,19 @@ public class OriginalNameBot {
                 current.markDone();
                 System.out.println("Congratulations, you did something you were supposed to do!");
                 System.out.println(current.toString());
-            } else if (splitted[0].equals("unmark")) {
+                continue;
+            }
+                
+            if (splitted[0].equals("unmark")) {
                 Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
                 current.markNotDone();
                 System.out.println("Why?");
-            } else if (splitted[0].equals("todo")) {
-                addTask(splitted[0], input.replace("todo ", ""));
+                continue;
+            }  
+
+            if (taskTypes.contains(splitted[0])) {
+                addTask(splitted[0], input.replace(splitted[0] + " ", ""));
             } else {
-                System.out.println(splitted[0] + ".");
                 Task newTask = new Task(input);
                 tasks.add(newTask);
                 numTasks++;
@@ -58,9 +64,29 @@ public class OriginalNameBot {
 
         if (type.equals("todo")) {
             current = new Todo(other);
+        } else if (type.equals("event")) {
+            String[] details = other.split("/");
+            String[] strings1 = details[1].split(" ");
+            String[] strings2 = details[2].split(" ");
+            
+            String description = details[0];
+            String from = "";
+            String to = "";
+
+            if (strings1[0].equals("from") && strings2[0].equals("to")) {
+                from = details[1].replace("from ", "");
+                to = details[2].replace("to ", "");                
+            } else if (strings2[0].equals("to") && strings1[0].equals("from")) {
+                from = details[2].replace("from ", "");
+                to = details[1].replace("to ", "");  
+            } else {
+                System.out.println("Invalid flags");
+                return;
+            }
+
+            current = new Event(description, from, to);
+
         } else {
-            System.out.println("not a todo");
-            System.out.println(type);
             current = new Task(other);
         }
 
