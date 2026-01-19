@@ -15,28 +15,33 @@ public class OriginalNameBot {
 
         while (true) {
             String input = scanner.nextLine();
-            
+
             if (input.equals("bye")) {
                 break;
-            } else if (input.equals("list")) {
+            } 
+                
+            if (input.equals("list")) {
                 for (int i = 0; i < numTasks; i++) {
                     System.out.println(i + 1 + ". " + tasks.get(i).toString());
                 }
-            } else if (input.split(" ")[0].equals("mark")) {
+                continue;
+            } 
+
+            String[] splitted = input.split(" ");
+
+            if (splitted[0].equals("mark")) {
                 Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
                 current.markDone();
                 System.out.println("Congratulations, you did something you were supposed to do!");
                 System.out.println(current.toString());
-            } else if (input.split(" ")[0].equals("unmark")) {
+            } else if (splitted[0].equals("unmark")) {
                 Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
                 current.markNotDone();
                 System.out.println("Why?");
-            } else if (input.split(" ")[0].equals("todo")) {
-                Task current = new Todo(input.replace("todo ", ""));
-                tasks.add(current);
-                numTasks++;
-                System.out.println("added: " + input);
+            } else if (splitted[0].equals("todo")) {
+                addTask(splitted[0], input.replace("todo ", ""));
             } else {
+                System.out.println(splitted[0] + ".");
                 Task newTask = new Task(input);
                 tasks.add(newTask);
                 numTasks++;
@@ -46,5 +51,21 @@ public class OriginalNameBot {
 
         System.out.println("Whew, finally. Bye.");
         scanner.close();
+    }
+
+    private static void addTask(String type, String other) {
+        Task current;
+
+        if (type.equals("todo")) {
+            current = new Todo(other);
+        } else {
+            System.out.println("not a todo");
+            System.out.println(type);
+            current = new Task(other);
+        }
+
+        tasks.add(current);
+        numTasks++;
+        System.out.println("added: " + other);
     }
 }
