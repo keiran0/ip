@@ -1,10 +1,7 @@
 public class OriginalNameBot {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from original name bot! As you can see, this is a very original name. \n");
+        System.out.println("What can I do for you?");
+        System.out.println("Just kidding. I don't want to do anything for you. Bye.");
     }
 }
