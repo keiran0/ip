@@ -1,7 +1,24 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello from original name bot! As you can see, this is a very original name. 
 
+What can I do for you?
+added: borrow book
+1. [T][ ] borrow book
+added: return book /by Sunday
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+added: project meeting /from Mon 2pm /to 4pm
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm  to: 4pm)
+Congratulations, you did something you were supposed to do!
+[T][X] borrow book
+Congratulations, you did something you were supposed to do!
+[D][X] return book (by: Sunday)
+Congratulations, you did something you were supposed to do!
+[E][X] project meeting (from: Mon 2pm  to: 4pm)
+1. [T][X] borrow book
+2. [D][X] return book (by: Sunday)
+3. [E][X] project meeting (from: Mon 2pm  to: 4pm)
+Why?
+Why?
+Why?
