@@ -20,13 +20,22 @@ public class OriginalNameBot {
                 break;
             } else if (input.equals("list")) {
                 for (int i = 0; i < numTasks; i++) {
-                    System.out.println(i + ". " + tasks.get(i).toString());
+                    System.out.println(i + 1 + ". " + tasks.get(i).toString());
                 }
+            } else if (input.split(" ")[0].equals("mark")) {
+                Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
+                current.markDone();
+                System.out.println("Congratulations, you did something you were supposed to do!");
+                System.out.println(current.toString());
+            } else if (input.split(" ")[0].equals("unmark")) {
+                Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
+                current.markNotDone();
+                System.out.println("Why?");
             } else {
                 Task newTask = new Task(input);
                 tasks.add(newTask);
                 numTasks++;
-                System.out.println("added: " + newTask.toString());
+                System.out.println("added: " + input);
             }
         }
 
