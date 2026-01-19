@@ -31,6 +31,11 @@ public class OriginalNameBot {
                 Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
                 current.markNotDone();
                 System.out.println("Why?");
+            } else if (input.split(" ")[0].equals("todo")) {
+                Task current = new Todo(input.replace("todo ", ""));
+                tasks.add(current);
+                numTasks++;
+                System.out.println("added: " + input);
             } else {
                 Task newTask = new Task(input);
                 tasks.add(newTask);
