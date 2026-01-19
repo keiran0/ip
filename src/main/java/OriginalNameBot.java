@@ -86,6 +86,17 @@ public class OriginalNameBot {
 
             current = new Event(description, from, to);
 
+        } else if (type.equals("deadline")) {
+            // deadline do homework /by no idea :-p
+            // details1 = by no idea :-p
+            String[] details = other.split("/");
+            String description = details[0];
+            String deadline = "";
+            if (details[1].split(" ")[0].equals("by")) {
+                deadline = details[1].replace("by ", "");
+            }
+            current = new Deadline(description, deadline);
+            
         } else {
             current = new Task(other);
         }
