@@ -48,7 +48,7 @@ public class OriginalNameBot {
             if (taskTypes.contains(splitted[0])) {
                 addTask(splitted[0], input.replace(splitted[0] + " ", ""));
             } else {
-                addTask("", input);
+                System.out.println("What command are you trying to give??");
             }
         }
 
@@ -77,7 +77,7 @@ public class OriginalNameBot {
                 from = details[2].replace("from ", "");
                 to = details[1].replace("to ", "");  
             } else {
-                System.out.println("Invalid flags");
+                System.out.println("Your 'to' and 'from' makes no sense, could you say that again but better? >:(");
                 return;
             }
 
@@ -89,11 +89,15 @@ public class OriginalNameBot {
             String deadline = "";
             if (details[1].split(" ")[0].equals("by")) {
                 deadline = details[1].replace("by ", "");
+                current = new Deadline(description, deadline);
+            } else {
+                System.out.println("A 'by' flag is required to specify the deadline");
+                return;
             }
-            current = new Deadline(description, deadline);
             
         } else {
-            current = new Task(other);
+            System.out.println("This is really not supposed to happen.");
+            return;
         }
 
         tasks.add(current);
