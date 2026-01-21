@@ -1,6 +1,4 @@
-Hello from original name bot! As you can see, this is a very original name. 
-
-What can I do for you?
+Hello from original name bot! As you can see, this is a very original name. What can I do for you?
 added: borrow book
 You have 1 task in the list. Hurry up and finish it.
 1. [T][ ] borrow book
