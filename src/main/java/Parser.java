@@ -14,53 +14,53 @@ public class Parser {
         // can throw invalidcommandexception here?
     }
 
-    public static String obtainCommand(String input) {
+    public static String obtainCommand(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(validCommands);
         Matcher m = p.matcher(input.strip());
 
-        if (!m.find()) throw new IllegalArgumentException("Invalid command");
+        if (!m.find()) throw new IllegalCommandException("Invalid command");
 
         return m.group(1);
     }
 
-    public static Todo parseTodo(String input) {
+    public static Todo parseTodo(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(todo);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalArgumentException("Invalid todo format");
+        if (!m.find()) throw new IllegalCommandException("Invalid todo format");
         String description = m.group(1);
         return new Todo(description);
     }
 
-    public static Deadline parseDeadline(String input) {
+    public static Deadline parseDeadline(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(deadline);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalArgumentException("Invalid deadline format");
+        if (!m.find()) throw new IllegalCommandException("Invalid deadline format");
         String description = m.group(1);
         String by = m.group(2);
         return new Deadline(description, by);
     }
 
-    public static Event parseEvent(String input) {
+    public static Event parseEvent(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(event);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalArgumentException("Invalid event format");
+        if (!m.find()) throw new IllegalCommandException("Invalid event format");
         String description = m.group(1);
         String from = m.group(2);
         String to = m.group(3);
         return new Event(description, from, to);
     }
 
-    public static int parseMark(String input) {
+    public static int parseMark(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(mark);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalArgumentException("Invalid mark format");
+        if (!m.find()) throw new IllegalCommandException("Invalid mark format");
         return Integer.parseInt(m.group(1));
     }
 
-    public static int parseUnmark(String input) {
+    public static int parseUnmark(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(unmark);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalArgumentException("Invalid unmark format");
+        if (!m.find()) throw new IllegalCommandException("Invalid unmark format");
         return Integer.parseInt(m.group(1));
     }
 
