@@ -5,11 +5,9 @@ import java.util.List;
 public class OriginalNameBot {
 
     public static List<Task> tasks = new ArrayList<>();
-    public static List<String> taskTypes = new ArrayList<>(List.of("todo", "deadline", "event"));
 
     public static void main(String[] args) {
-        System.out.println("Hello from original name bot! As you can see, this is a very original name. \n");
-        System.out.println("What can I do for you?");
+        System.out.println(BotLines.GREETING);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +15,7 @@ public class OriginalNameBot {
             String input = scanner.nextLine();
 
             if (!Parser.isValid(input)) {
-                System.out.println("Invalid command");
+                System.out.println(BotLines.UNKNOWN_COMMAND);
                 continue;
             }
 
@@ -43,10 +41,10 @@ public class OriginalNameBot {
                         int i = Parser.parseMark(input);
                         Task task = tasks.get(i - 1);
                         task.markDone();
-                        System.out.println("Congratulations, you did something you were supposed to do!");
+                        System.out.println(BotLines.TASK_DONE);
                         System.out.println(task);
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("You don't have that many tasks!");
+                        System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
                     } catch (NoTaskFoundException e2) {
                         System.out.println(e2);
                     }
@@ -58,10 +56,10 @@ public class OriginalNameBot {
                         int i = Parser.parseUnmark(input);
                         Task task = tasks.get(i - 1);
                         task.markNotDone();
-                        System.out.println("Why?");
+                        System.out.println(BotLines.TASK_UNMARKED);
 
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("You don't have that many tasks!");
+                        System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
                     } catch (NoTaskFoundException e2) {
                         System.out.println(e2);
                     }
@@ -72,23 +70,23 @@ public class OriginalNameBot {
                         int i = Parser.parseDelete(input);
                         Task task = tasks.get(i - 1);
                         tasks.remove(i - 1);
-                        System.out.println("Good, please keep doing this so I don't have to remember so many things. Removed:");
+                        System.out.println(BotLines.TASK_DELETED);
                         System.out.println(task);
                         countTasks();
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("You don't have that many tasks!");
+                        System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
                     } catch (NoTaskFoundException e2) {
                         System.out.println(e2);
                     }
                 }
 
             } catch (IllegalCommandException e) {
-                System.out.println("I don't understand this!");
+                System.out.println(BotLines.UNKNOWN_COMMAND);
             }
 
         }
 
-        System.out.println("Whew, finally. Bye.");
+        System.out.println(BotLines.GOODBYE);
         scanner.close();
     }
 
@@ -112,7 +110,7 @@ public class OriginalNameBot {
             System.out.println("added: " + input.replace(command + " ", ""));
             countTasks();
         } catch (IllegalCommandException e) {
-            System.out.println("Invalid format for task type!");
+            System.out.println(BotLines.BAD_COMMAND_FORMAT);
 
         }
 
