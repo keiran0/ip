@@ -11,3 +11,19 @@ list
 unmark 3
 unmark 1
 unmark 2
+list
+help
+todo
+deadline
+event
+deadline /by iqweoqwje description
+deadline wqeioqwnenqwe
+deadline /bye iqwuqwe
+event quweuiqwe
+event /from qwuieiwqe /to quwehuiqwe qneiqwe
+event qwieiqwie /to udiquwewq /from qwjenjwq 
+event /fromm uqweniqwe /toe qwueqwie
+mark 4
+unmark 5
+mark abc
+mark /

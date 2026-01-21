@@ -39,18 +39,32 @@ public class OriginalNameBot {
                 }
 
                 if (command.equals("mark")) {
-                    int i = Parser.parseMark(input);
-                    Task task = tasks.get(i - 1);
-                    task.markDone();
-                    System.out.println("Congratulations, you did something you were supposed to do!");
-                    System.out.println(task);
+                    try {
+                        int i = Parser.parseMark(input);
+                        Task task = tasks.get(i - 1);
+                        task.markDone();
+                        System.out.println("Congratulations, you did something you were supposed to do!");
+                        System.out.println(task);
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("You don't have that many tasks!");
+                    } catch (NoTaskFoundException e2) {
+                        System.out.println(e2);
+                    }
+                    
                 }
 
                 if (command.equals("unmark")) {
-                    int i = Parser.parseUnmark(input);
-                    Task task = tasks.get(i - 1);
-                    task.markNotDone();
-                    System.out.println("Why?");
+                    try {
+                        int i = Parser.parseUnmark(input);
+                        Task task = tasks.get(i - 1);
+                        task.markNotDone();
+                        System.out.println("Why?");
+
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("You don't have that many tasks!");
+                    } catch (NoTaskFoundException e2) {
+                        System.out.println(e2);
+                    }
                 }
 
             } catch (IllegalCommandException e) {

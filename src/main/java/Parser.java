@@ -50,18 +50,27 @@ public class Parser {
         return new Event(description, from, to);
     }
 
-    public static int parseMark(String input) throws IllegalCommandException {
+    public static int parseMark(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(mark);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) throw new IllegalCommandException("Invalid mark format");
-        return Integer.parseInt(m.group(1));
+        try {
+            return Integer.parseInt(m.group(1));
+        } catch (NumberFormatException e) {
+            throw new NoTaskFoundException("Enter a number!!!");
+        }
+        
     }
 
-    public static int parseUnmark(String input) throws IllegalCommandException {
+    public static int parseUnmark(String input) throws IllegalCommandException, NoTaskFoundException{
         Pattern p = Pattern.compile(unmark);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) throw new IllegalCommandException("Invalid unmark format");
-        return Integer.parseInt(m.group(1));
+        try {
+            return Integer.parseInt(m.group(1));
+        } catch (NumberFormatException e) {
+            throw new NoTaskFoundException("Enter a number!!!");
+        }
     }
 
 

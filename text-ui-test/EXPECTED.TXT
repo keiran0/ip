@@ -22,3 +22,21 @@ Congratulations, you did something you were supposed to do!
 Why?
 Why?
 Why?
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm  to: 4pm)
+Invalid command
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+Invalid format for task type!
+You don't have that many tasks!
+You don't have that many tasks!
+Enter a number!
+Enter a number!
