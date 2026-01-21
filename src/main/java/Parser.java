@@ -1,0 +1,68 @@
+import java.util.regex.*;
+
+public class Parser {
+    
+    private static String validCommands = "^(list|todo|deadline|event|mark|unmark|bye).*";
+    private static String todo = "todo (.*)";
+    private static String event = "event (.*)/from (.*)/to (.*)";
+    private static String deadline = "deadline (.*) /by (.*)";
+    private static String mark = "^mark (\\d*)";
+    private static String unmark = "^unmark (\\d*)";
+
+    public static boolean isValid(String input) {
+        return Pattern.matches(validCommands, input);
+        // can throw invalidcommandexception here?
+    }
+
+    public static String obtainCommand(String input) {
+        Pattern p = Pattern.compile(validCommands);
+        Matcher m = p.matcher(input.strip());
+
+        if (!m.find()) throw new IllegalArgumentException("Invalid command");
+
+        return m.group(1);
+    }
+
+    public static Todo parseTodo(String input) {
+        Pattern p = Pattern.compile(todo);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) throw new IllegalArgumentException("Invalid todo format");
+        String description = m.group(1);
+        return new Todo(description);
+    }
+
+    public static Deadline parseDeadline(String input) {
+        Pattern p = Pattern.compile(deadline);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) throw new IllegalArgumentException("Invalid deadline format");
+        String description = m.group(1);
+        String by = m.group(2);
+        return new Deadline(description, by);
+    }
+
+    public static Event parseEvent(String input) {
+        Pattern p = Pattern.compile(event);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) throw new IllegalArgumentException("Invalid event format");
+        String description = m.group(1);
+        String from = m.group(2);
+        String to = m.group(3);
+        return new Event(description, from, to);
+    }
+
+    public static int parseMark(String input) {
+        Pattern p = Pattern.compile(mark);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) throw new IllegalArgumentException("Invalid mark format");
+        return Integer.parseInt(m.group(1));
+    }
+
+    public static int parseUnmark(String input) {
+        Pattern p = Pattern.compile(unmark);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) throw new IllegalArgumentException("Invalid unmark format");
+        return Integer.parseInt(m.group(1));
+    }
+
+
+}

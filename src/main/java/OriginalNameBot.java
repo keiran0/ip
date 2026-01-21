@@ -5,7 +5,6 @@ import java.util.List;
 public class OriginalNameBot {
 
     public static List<Task> tasks = new ArrayList<>();
-    public static int numTasks = 0;
     public static List<String> taskTypes = new ArrayList<>(List.of("todo", "deadline", "event"));
 
     public static void main(String[] args) {
@@ -17,91 +16,66 @@ public class OriginalNameBot {
         while (true) {
             String input = scanner.nextLine();
 
-            if (input.equals("bye")) {
+            if (!Parser.isValid(input)) {
+                System.out.println("Invalid command");
+                continue;
+            }
+
+            String command = Parser.obtainCommand(input);
+
+            if (command.equals("bye")) {
                 break;
-            } 
-                
-            if (input.equals("list")) {
-                for (int i = 0; i < numTasks; i++) {
+            }
+
+            if (command.equals("list")) {
+                for (int i = 0; i < tasks.size(); i++) {
                     System.out.println(i + 1 + ". " + tasks.get(i).toString());
                 }
                 continue;
-            } 
+            }
 
-            String[] splitted = input.split(" ");
+            if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+                addTask(input, command);
+            }
 
-            if (splitted[0].equals("mark")) {
-                Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
-                current.markDone();
+            if (command.equals("mark")) {
+                int i = Parser.parseMark(input);
+                Task task = tasks.get(i - 1);
+                task.markDone();
                 System.out.println("Congratulations, you did something you were supposed to do!");
-                System.out.println(current.toString());
-                continue;
+                System.out.println(task);
             }
-                
-            if (splitted[0].equals("unmark")) {
-                Task current = tasks.get(Integer.parseInt(input.split(" ")[1]) - 1);
-                current.markNotDone();
-                System.out.println("Why?");
-                continue;
-            }  
 
-            if (taskTypes.contains(splitted[0])) {
-                addTask(splitted[0], input.replace(splitted[0] + " ", ""));
-            } else {
-                System.out.println("What command are you trying to give??");
+            if (command.equals("unmark")) {
+                int i = Parser.parseUnmark(input);
+                Task task = tasks.get(i - 1);
+                task.markNotDone();
+                System.out.println("Why?");
             }
+
         }
 
         System.out.println("Whew, finally. Bye.");
         scanner.close();
     }
 
-    private static void addTask(String type, String other) {
-        Task current;
+    private static void addTask(String input, String command) {
 
-        if (type.equals("todo")) {
-            current = new Todo(other);
-        } else if (type.equals("event")) {
-            String[] details = other.split("/");
-            String[] strings1 = details[1].split(" ");
-            String[] strings2 = details[2].split(" ");
-            
-            String description = details[0];
-            String from = "";
-            String to = "";
+        Task newTask = null;
 
-            if (strings1[0].equals("from") && strings2[0].equals("to")) {
-                from = details[1].replace("from ", "");
-                to = details[2].replace("to ", "");                
-            } else if (strings2[0].equals("to") && strings1[0].equals("from")) {
-                from = details[2].replace("from ", "");
-                to = details[1].replace("to ", "");  
-            } else {
-                System.out.println("Your 'to' and 'from' makes no sense, could you say that again but better? >:(");
-                return;
-            }
-
-            current = new Event(description, from, to);
-
-        } else if (type.equals("deadline")) {
-            String[] details = other.split("/");
-            String description = details[0];
-            String deadline = "";
-            if (details[1].split(" ")[0].equals("by")) {
-                deadline = details[1].replace("by ", "");
-                current = new Deadline(description, deadline);
-            } else {
-                System.out.println("A 'by' flag is required to specify the deadline");
-                return;
-            }
-            
-        } else {
-            System.out.println("This is really not supposed to happen.");
-            return;
+        if (command.equals("todo")) {
+            newTask = Parser.parseTodo(input);
         }
 
-        tasks.add(current);
-        numTasks++;
-        System.out.println("added: " + other);
+        if (command.equals("deadline")) {
+            newTask = Parser.parseDeadline(input);
+        }
+
+        if (command.equals("event")) {
+            newTask = Parser.parseEvent(input);
+        }
+
+        tasks.add(newTask);
+        System.out.println("added: " + input.replace(command + " ", ""));
     }
 }
