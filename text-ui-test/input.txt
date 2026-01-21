@@ -27,3 +27,7 @@ mark 4
 unmark 5
 mark abc
 mark /
+delete 3
+delete 2
+delete 1
+delete 3

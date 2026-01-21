@@ -2,12 +2,13 @@ import java.util.regex.*;
 
 public class Parser {
     
-    private static String validCommands = "^(list|todo|deadline|event|mark|unmark|bye).*";
+    private static String validCommands = "^(list|todo|deadline|event|mark|unmark|bye|delete).*";
     private static String todo = "todo (\\S+.*)";
     private static String event = "event (\\S+.*)/from (\\S+.*)/to (\\S+.*)";
     private static String deadline = "deadline (\\S+.*) /by (\\S+.*)";
     private static String mark = "^mark (\\d*)";
     private static String unmark = "^unmark (\\d*)";
+    private static String delete = "^delete (\\d*)";
 
     public static boolean isValid(String input) {
         return Pattern.matches(validCommands, input);
@@ -66,6 +67,17 @@ public class Parser {
         Pattern p = Pattern.compile(unmark);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) throw new IllegalCommandException("Invalid unmark format");
+        try {
+            return Integer.parseInt(m.group(1));
+        } catch (NumberFormatException e) {
+            throw new NoTaskFoundException("Enter a number!!!");
+        }
+    }
+
+    public static int parseDelete(String input) throws IllegalCommandException, NoTaskFoundException {
+        Pattern p = Pattern.compile(delete);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) throw new IllegalCommandException("Invalid delete format");
         try {
             return Integer.parseInt(m.group(1));
         } catch (NumberFormatException e) {

@@ -67,6 +67,21 @@ public class OriginalNameBot {
                     }
                 }
 
+                if (command.equals("delete")) {
+                    try {
+                        int i = Parser.parseDelete(input);
+                        Task task = tasks.get(i - 1);
+                        tasks.remove(i - 1);
+                        System.out.println("Good, please keep doing this so I don't have to remember so many things. Removed:");
+                        System.out.println(task);
+                        countTasks();
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("You don't have that many tasks!");
+                    } catch (NoTaskFoundException e2) {
+                        System.out.println(e2);
+                    }
+                }
+
             } catch (IllegalCommandException e) {
                 System.out.println("I don't understand this!");
             }
@@ -95,10 +110,22 @@ public class OriginalNameBot {
             }
             tasks.add(newTask);
             System.out.println("added: " + input.replace(command + " ", ""));
+            countTasks();
         } catch (IllegalCommandException e) {
             System.out.println("Invalid format for task type!");
 
         }
 
+    }
+
+    public static void countTasks() {
+        if (tasks.size() == 0) {
+            System.out.println("You have no tasks");
+        } else if (tasks.size() == 1) {
+            System.out.println("You have 1 task in the list. Hurry up and finish it.");
+        } else {
+            System.out.println("You have " +  tasks.size() + " tasks in the list. Hurry up and finish them.");
+        }
+        
     }
 }
