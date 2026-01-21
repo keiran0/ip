@@ -21,36 +21,40 @@ public class OriginalNameBot {
                 continue;
             }
 
-            String command = Parser.obtainCommand(input);
-
-            if (command.equals("bye")) {
-                break;
-            }
-
-            if (command.equals("list")) {
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println(i + 1 + ". " + tasks.get(i).toString());
+            try {
+                String command = Parser.obtainCommand(input);
+                if (command.equals("bye")) {
+                    break;
                 }
-                continue;
-            }
 
-            if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                addTask(input, command);
-            }
+                if (command.equals("list")) {
+                    for (int i = 0; i < tasks.size(); i++) {
+                        System.out.println(i + 1 + ". " + tasks.get(i).toString());
+                    }
+                    continue;
+                }
 
-            if (command.equals("mark")) {
-                int i = Parser.parseMark(input);
-                Task task = tasks.get(i - 1);
-                task.markDone();
-                System.out.println("Congratulations, you did something you were supposed to do!");
-                System.out.println(task);
-            }
+                if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+                    addTask(input, command);
+                }
 
-            if (command.equals("unmark")) {
-                int i = Parser.parseUnmark(input);
-                Task task = tasks.get(i - 1);
-                task.markNotDone();
-                System.out.println("Why?");
+                if (command.equals("mark")) {
+                    int i = Parser.parseMark(input);
+                    Task task = tasks.get(i - 1);
+                    task.markDone();
+                    System.out.println("Congratulations, you did something you were supposed to do!");
+                    System.out.println(task);
+                }
+
+                if (command.equals("unmark")) {
+                    int i = Parser.parseUnmark(input);
+                    Task task = tasks.get(i - 1);
+                    task.markNotDone();
+                    System.out.println("Why?");
+                }
+
+            } catch (IllegalCommandException e) {
+                System.out.println("I don't understand this!");
             }
 
         }
@@ -63,16 +67,20 @@ public class OriginalNameBot {
 
         Task newTask = null;
 
-        if (command.equals("todo")) {
-            newTask = Parser.parseTodo(input);
-        }
+        try {
+            if (command.equals("todo")) {
+                newTask = Parser.parseTodo(input);
+            }
 
-        if (command.equals("deadline")) {
-            newTask = Parser.parseDeadline(input);
-        }
+            if (command.equals("deadline")) {
+                newTask = Parser.parseDeadline(input);
+            }
 
-        if (command.equals("event")) {
-            newTask = Parser.parseEvent(input);
+            if (command.equals("event")) {
+                newTask = Parser.parseEvent(input);
+            }
+        } catch (IllegalCommandException e) {
+            System.out.println("Invalid format for task type!");
         }
 
         tasks.add(newTask);
