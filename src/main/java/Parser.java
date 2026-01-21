@@ -3,9 +3,9 @@ import java.util.regex.*;
 public class Parser {
     
     private static String validCommands = "^(list|todo|deadline|event|mark|unmark|bye).*";
-    private static String todo = "todo (.*)";
-    private static String event = "event (.*)/from (.*)/to (.*)";
-    private static String deadline = "deadline (.*) /by (.*)";
+    private static String todo = "todo (\\S+.*)";
+    private static String event = "event (\\S+.*)/from (\\S+.*)/to (\\S+.*)";
+    private static String deadline = "deadline (\\S+.*) /by (\\S+.*)";
     private static String mark = "^mark (\\d*)";
     private static String unmark = "^unmark (\\d*)";
 
