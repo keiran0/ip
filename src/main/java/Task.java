@@ -2,10 +2,12 @@ public class Task {
 
     private String description;
     private boolean isDone;
+    private String creationString;
 
-    public Task(String description) {
+    public Task(String description, String input) {
         this.description = description;
         this.isDone = false;
+        this.creationString = input;
     }
 
     @Override
@@ -23,6 +25,10 @@ public class Task {
 
     public void markNotDone() {
         this.isDone = false;
+    }
+
+    public String getCreationString() {
+        return this.creationString;
     }
 
 }
