@@ -29,7 +29,7 @@ public class Parser {
         Matcher m = p.matcher(input.strip());
         if (!m.find()) throw new IllegalCommandException("Invalid todo format");
         String description = m.group(1);
-        return new Todo(description);
+        return new Todo(description, input);
     }
 
     public static Deadline parseDeadline(String input) throws IllegalCommandException {
@@ -38,7 +38,7 @@ public class Parser {
         if (!m.find()) throw new IllegalCommandException("Invalid deadline format");
         String description = m.group(1);
         String by = m.group(2);
-        return new Deadline(description, by);
+        return new Deadline(description, by, input);
     }
 
     public static Event parseEvent(String input) throws IllegalCommandException {
@@ -48,7 +48,7 @@ public class Parser {
         String description = m.group(1);
         String from = m.group(2);
         String to = m.group(3);
-        return new Event(description, from, to);
+        return new Event(description, from, to, input);
     }
 
     public static int parseMark(String input) throws IllegalCommandException, NoTaskFoundException {
