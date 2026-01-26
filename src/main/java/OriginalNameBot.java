@@ -8,6 +8,7 @@ public class OriginalNameBot {
 
     public static void main(String[] args) {
         System.out.println(BotLines.GREETING);
+        FileManager.initFile();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -73,6 +74,7 @@ public class OriginalNameBot {
                         System.out.println(BotLines.TASK_DELETED);
                         System.out.println(task);
                         countTasks();
+                        FileManager.writeFile(tasks);
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
                     } catch (NoTaskFoundException e2) {
@@ -90,7 +92,7 @@ public class OriginalNameBot {
         scanner.close();
     }
 
-    private static void addTask(String input, String command) {
+    public static void addTask(String input, String command) {
 
         Task newTask = null;
 
@@ -109,6 +111,7 @@ public class OriginalNameBot {
             tasks.add(newTask);
             System.out.println("added: " + input.replace(command + " ", ""));
             countTasks();
+            FileManager.writeFile(tasks);
         } catch (IllegalCommandException e) {
             System.out.println(BotLines.BAD_COMMAND_FORMAT);
 
