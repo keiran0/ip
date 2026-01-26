@@ -6,10 +6,13 @@ import java.util.Scanner;
 
 public class FileManager {
 
-    private static String filePath = "data/tasks.txt";
+    private static String dir = "data";
+    private static String file = "tasks.txt";
+    private static String filePath = String.join("/", dir, file);
 
     public static void initFile() {
         try {
+            new File(dir).mkdirs();
             File file = new File(filePath);
             if (file.createNewFile()) {
                 System.out.println("No save file detected, created new file");
