@@ -1,3 +1,5 @@
+package originalNameBot.exceptions;
+
 public class NoTaskFoundException extends Exception {
     public NoTaskFoundException(String description) {
         super(description);

@@ -1,3 +1,6 @@
+package originalNameBot.tasks;
+import originalNameBot.utils.Date;
+
 public class Deadline extends Task {
 
     private Date by;
