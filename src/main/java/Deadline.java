@@ -1,8 +1,8 @@
 public class Deadline extends Task {
 
-    private String by;
+    private Date by;
 
-    public Deadline(String description, String by, String input) {
+    public Deadline(String description, Date by, String input) {
         super(description, input);
         this.by = by;
     }

@@ -1,12 +1,12 @@
 public class Event extends Task {
 
-    private String from;
-    private String to;
+    private Date from;
+    private Date to;
 
-    public Event(String description, String from, String to, String input) {
+    public Event(String description, Date from, Date to, String input) {
         super(description, input);
         this.from = from;
-        this.to = to;
+        this.to = to;    
     }
 
     public String toString() {
