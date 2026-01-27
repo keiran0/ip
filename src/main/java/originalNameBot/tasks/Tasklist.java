@@ -1,3 +1,5 @@
+package originalNameBot.tasks;
+
 import java.util.ArrayList;
 import java.util.List;
 import originalNameBot.utils.Parser;

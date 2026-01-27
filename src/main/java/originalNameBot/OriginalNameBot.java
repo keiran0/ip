@@ -2,13 +2,8 @@ package originalNameBot;
 import java.util.Scanner;
 
 import originalNameBot.exceptions.IllegalCommandException;
-import originalNameBot.exceptions.NoTaskFoundException;
-import originalNameBot.tasks.Task;
 import originalNameBot.utils.FileManager;
 import originalNameBot.utils.Parser;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class OriginalNameBot {
     public static void main(String[] args) {
