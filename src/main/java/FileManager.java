@@ -47,7 +47,7 @@ public class FileManager {
                 String input = sc.nextLine();
                 try {
                     String command = Parser.obtainCommand(input);
-                    OriginalNameBot.addTask(input, command);
+                    Tasklist.addTask(input, command);
                 } catch (IllegalCommandException e) {
                     System.out.println("Wrong command in save file:" + input);
                     continue;
