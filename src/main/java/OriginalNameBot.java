@@ -114,7 +114,7 @@ public class OriginalNameBot {
             FileManager.writeFile(tasks);
         } catch (IllegalCommandException e) {
             System.out.println(BotLines.BAD_COMMAND_FORMAT);
-
+            System.out.println(e.getMessage());
         }
 
     }
