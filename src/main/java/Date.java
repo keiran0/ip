@@ -21,9 +21,10 @@ public class Date {
                 String rawTime = dateTimeMatcher.group(2); // 1900
                 String toParse = dateTimeMatcher.group(1) + "T" + rawTime.charAt(0) +  rawTime.charAt(1) + ":" +  rawTime.charAt(2)+ rawTime.charAt(3);
                 LocalDateTime datetime = LocalDateTime.parse(toParse);
+                LocalDate date = LocalDate.parse(dateTimeMatcher.group(1));
                 this.hasTime = true;
                 this.datetime = datetime;
-                this.date = null;
+                this.date = date;
             } catch (DateTimeException e) {
                 System.out.println("Check localdatetime parse function");
                 throw new IllegalCommandException("Provide valid datetime format! Check valid day/month/year/time values");
