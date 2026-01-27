@@ -15,6 +15,28 @@ public class Parser {
         // can throw invalidcommandexception here?
     }
 
+    public static void parseTask(String input, String command) {
+        if (command.equals("list")) {
+            Tasklist.listTasks();
+        }
+
+        if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+            Tasklist.addTask(input, command);
+        }
+
+        if (command.equals("mark")) {
+            Tasklist.markTask(input);
+        }
+
+        if (command.equals("unmark")) {
+            Tasklist.unmarkTask(input);
+        }
+
+        if (command.equals("delete")) {
+            Tasklist.deleteTask(input);
+        }
+    }
+
     public static String obtainCommand(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(validCommands);
         Matcher m = p.matcher(input.strip());

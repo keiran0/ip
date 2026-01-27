@@ -19,28 +19,10 @@ public class OriginalNameBot {
                 String command = Parser.obtainCommand(input);
                 if (command.equals("bye")) {
                     break;
+                } else {
+                    Parser.parseTask(input, command);
                 }
 
-                if (command.equals("list")) {
-                    Tasklist.listTasks();
-                    continue;
-                }
-
-                if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                    Tasklist.addTask(input, command);
-                }
-
-                if (command.equals("mark")) {
-                    Tasklist.markTask(input);
-                }
-
-                if (command.equals("unmark")) {
-                    Tasklist.unmarkTask(input);
-                }
-
-                if (command.equals("delete")) {
-                    Tasklist.deleteTask(input);
-                }
 
             } catch (IllegalCommandException e) {
                 System.out.println(BotLines.UNKNOWN_COMMAND);
