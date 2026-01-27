@@ -1,7 +1,9 @@
+package originalNameBot.utils;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.regex.*;
+import originalNameBot.exceptions.IllegalCommandException;
 
 public class Date {
     private boolean hasTime;

@@ -1,3 +1,5 @@
+package originalNameBot;
+
 public enum BotLines {
     GREETING {
         @Override

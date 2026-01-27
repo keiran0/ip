@@ -1,3 +1,5 @@
+package originalNameBot.exceptions;
+
 public class IllegalCommandException extends Exception {
     public IllegalCommandException(String description) {
         super(description);

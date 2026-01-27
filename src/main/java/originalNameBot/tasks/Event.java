@@ -1,3 +1,7 @@
+package originalNameBot.tasks;
+
+import originalNameBot.utils.Date;
+
 public class Event extends Task {
 
     private Date from;

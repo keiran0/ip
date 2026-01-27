@@ -1,3 +1,5 @@
+package originalNameBot.tasks;
+
 public class Task {
 
     private String description;
