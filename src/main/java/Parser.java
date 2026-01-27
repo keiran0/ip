@@ -1,14 +1,14 @@
 import java.util.regex.*;
 
 public class Parser {
-    
+
     private static String validCommands = "^(list|todo|deadline|event|mark|unmark|bye|delete).*";
-    private static String todo = "todo (\\S+.*)";
-    private static String event = "event (\\S+.*)/from (\\S+.*)/to (\\S+.*)";
-    private static String deadline = "deadline (\\S+.*) /by (\\S+.*)";
-    private static String mark = "^mark (\\d*)";
-    private static String unmark = "^unmark (\\d*)";
-    private static String delete = "^delete (\\d*)";
+    private static String todo = "todo *(\\S+.*)";
+    private static String event = "event *(\\S+.*)/from (.*) /to (.*)";
+    private static String deadline = "deadline *(\\S+.*) /by (.*)";
+    private static String mark = "^mark *(\\d*)";
+    private static String unmark = "^unmark *(\\d*)";
+    private static String delete = "^delete *(\\d*)";
 
     public static boolean isValid(String input) {
         return Pattern.matches(validCommands, input);
@@ -19,7 +19,8 @@ public class Parser {
         Pattern p = Pattern.compile(validCommands);
         Matcher m = p.matcher(input.strip());
 
-        if (!m.find()) throw new IllegalCommandException("Invalid command");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid command");
 
         return m.group(1);
     }
@@ -27,7 +28,8 @@ public class Parser {
     public static Todo parseTodo(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(todo);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalCommandException("Invalid todo format");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid todo format");
         String description = m.group(1);
         return new Todo(description, input);
     }
@@ -35,38 +37,42 @@ public class Parser {
     public static Deadline parseDeadline(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(deadline);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalCommandException("Invalid deadline format");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid deadline format");
         String description = m.group(1);
-        String by = m.group(2);
-        return new Deadline(description, by, input);
+        Date date = new Date(m.group(2));
+        return new Deadline(description, date, input);
     }
 
     public static Event parseEvent(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(event);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalCommandException("Invalid event format");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid event format");
         String description = m.group(1);
-        String from = m.group(2);
-        String to = m.group(3);
+        Date from = new Date(m.group(2));
+        Date to = new Date(m.group(3));
         return new Event(description, from, to, input);
     }
 
     public static int parseMark(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(mark);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalCommandException("Invalid mark format");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid mark format");
         try {
             return Integer.parseInt(m.group(1));
         } catch (NumberFormatException e) {
             throw new NoTaskFoundException("Enter a number!!!");
         }
-        
+
     }
 
-    public static int parseUnmark(String input) throws IllegalCommandException, NoTaskFoundException{
+    public static int parseUnmark(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(unmark);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalCommandException("Invalid unmark format");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid unmark format");
         try {
             return Integer.parseInt(m.group(1));
         } catch (NumberFormatException e) {
@@ -77,13 +83,13 @@ public class Parser {
     public static int parseDelete(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(delete);
         Matcher m = p.matcher(input.strip());
-        if (!m.find()) throw new IllegalCommandException("Invalid delete format");
+        if (!m.find())
+            throw new IllegalCommandException("Invalid delete format");
         try {
             return Integer.parseInt(m.group(1));
         } catch (NumberFormatException e) {
             throw new NoTaskFoundException("Enter a number!!!");
         }
     }
-
 
 }
