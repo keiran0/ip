@@ -1,4 +1,4 @@
-package originalNameBot;
+package originalNameBot.bot;
 
 public enum BotLines {
     GREETING {

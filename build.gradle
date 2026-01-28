@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    mainClass.set("originalNameBot.OriginalNameBot")
+    mainClass.set("originalNameBot.bot.OriginalNameBot")
 }
 
 shadowJar {

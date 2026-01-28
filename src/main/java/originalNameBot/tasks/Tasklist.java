@@ -3,8 +3,8 @@ package originalNameBot.tasks;
 import java.util.ArrayList;
 import java.util.List;
 import originalNameBot.utils.Parser;
-import originalNameBot.BotLines;
 import originalNameBot.exceptions.NoTaskFoundException;
+import originalNameBot.bot.BotLines;
 import originalNameBot.exceptions.IllegalCommandException;
 import originalNameBot.utils.FileManager;
 

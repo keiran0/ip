@@ -1,4 +1,4 @@
-package originalNameBot;
+package originalNameBot.bot;
 import java.util.Scanner;
 
 import originalNameBot.exceptions.IllegalCommandException;
