@@ -1,0 +1,62 @@
+package originalNameBot.tasks;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import originalNameBot.utils.Date;
+import originalNameBot.exceptions.IllegalCommandException;
+
+public class EventTest {
+
+    private static String dateWithTimeString = "2026-01-28 1900";
+    private static String dateWithoutTimeString = "2026-01-28";
+    private static String description = "Submit assignment";
+    
+    @Test
+    public void testEventMixedTimesToString() throws IllegalCommandException {
+        Date dateWithTime = new Date(EventTest.dateWithTimeString);
+        Date dateWithoutTime = new Date(EventTest.dateWithoutTimeString);
+        Event event = new Event("Submit assignment", dateWithTime, dateWithoutTime, "event Submit assignment /from " + dateWithTimeString + " /to " + dateWithoutTimeString);
+        String expected = "[E][ ] Submit assignment (from: " + dateWithTime.toString() + " to: " + dateWithoutTime.toString() + ")";
+        assertEquals(expected, event.toString());
+    }
+
+    @Test
+    public void testEventDatesOnlyToString() throws IllegalCommandException {
+        Date dateWithoutTimeFirst = new Date(EventTest.dateWithoutTimeString);
+        Date dateWithoutTimeSecond = new Date(EventTest.dateWithoutTimeString);
+        Event event = new Event(EventTest.description, dateWithoutTimeFirst, dateWithoutTimeSecond, "event " + description + " /from " + dateWithoutTimeString + " /to " + dateWithoutTimeString);
+        String expected = "[E][ ] Submit assignment (from: " + dateWithoutTimeFirst.toString() + " to: " + dateWithoutTimeSecond.toString() + ")";
+        assertEquals(expected, event.toString());
+    }
+
+    @Test
+    public void testEventTimesOnlyToString() throws IllegalCommandException {
+        Date dateFirst = new Date("2026-08-08 1900");
+        Date dateSecond = new Date("2026-12-11 1800");
+        Event event = new Event("Submit assignment", dateFirst, dateSecond, "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
+        String expected = "[E][ ] Submit assignment (from: " + dateFirst.toString() + " to: " + dateSecond.toString() + ")";
+    }
+
+    @Test
+    public void testEventMarkDone() throws IllegalCommandException {
+        Date dateFirst = new Date("2026-08-08 1900");
+        Date dateSecond = new Date("2026-12-11 1800");
+        Event event = new Event("Submit assignment", dateFirst, dateSecond, "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
+        event.markDone();
+        assertEquals(event.getIsDone(), true);
+    }
+
+    @Test
+    public void testEventMarkNotDone() throws IllegalCommandException {
+        Date dateFirst = new Date("2026-08-08 1900");
+        Date dateSecond = new Date("2026-12-11 1800");
+        Event event = new Event("Submit assignment", dateFirst, dateSecond, "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
+        event.markDone();
+        event.markNotDone();
+        assertEquals(event.getIsDone(), false);
+    }
+
+}
