@@ -36,14 +36,16 @@ public class Task {
     }
 
     /**
-     * Returns the string used to create the task
+     * Returns the string used to create the task.
+     * @return String used to create the task.
      */
     public String getCreationString() {
         return this.creationString;
     }
 
     /**
-     * Returns the task's isDone attribute
+     * Returns the task's isDone attribute.
+     * @return isDone attribute of the task.
      */
     public boolean getIsDone() {
         return this.isDone;

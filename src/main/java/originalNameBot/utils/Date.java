@@ -14,8 +14,9 @@ public class Date {
     private String datetimeRegex = dateRegex + " *" +  "(\\d{4})";
 
     /**
-     * Creates a new Date
+     * Creates a new Date.
      * @param input String input of the date. Accepts the format YYYY-MM-DD or YYYY-MM-DD-HHMM, throws IllegalCommandException otherwise.
+     * @return Date object created from the input string.
      * @throws IllegalCommandException
      */
     public Date(String input) throws IllegalCommandException {
