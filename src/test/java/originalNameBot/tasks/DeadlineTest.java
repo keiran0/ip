@@ -39,6 +39,7 @@ public class DeadlineTest {
     public void testDeadlineMarkNotDone() throws IllegalCommandException {
         Date date = new Date("2026-01-28 1900");
         Deadline task = new Deadline("Submit assignment", date, "deadline Submit assignment");
+        task.markDone();
         task.markNotDone();
         assertEquals(task.getIsDone(), false);
     }
