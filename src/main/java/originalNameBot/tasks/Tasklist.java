@@ -2,19 +2,16 @@ package originalNameBot.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
-import originalNameBot.utils.Parser;
-import originalNameBot.exceptions.NoTaskFoundException;
+
 import originalNameBot.bot.BotLines;
 import originalNameBot.exceptions.IllegalCommandException;
+import originalNameBot.exceptions.NoTaskFoundException;
 import originalNameBot.utils.FileManager;
+import originalNameBot.utils.Parser;
 
 public class Tasklist {
 
-    public static List<Task> tasks = new ArrayList<>();
-
-    public static void main(String[] args) {
-
-    }
+    private static List<Task> tasks = new ArrayList<>();
 
     public static void listTasks() {
         for (int i = 0; i < tasks.size(); i++) {
@@ -105,7 +102,8 @@ public class Tasklist {
         } else if (tasks.size() == 1) {
             System.out.println("You have 1 task in the list. Hurry up and finish it.");
         } else {
-            System.out.println("You have " + tasks.size() + " tasks in the list. Hurry up and finish them.");
+            System.out.println(
+                    "You have " + tasks.size() + " tasks in the list. Hurry up and finish them.");
         }
 
     }

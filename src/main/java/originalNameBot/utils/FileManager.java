@@ -1,4 +1,5 @@
 package originalNameBot.utils;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class FileManager {
             System.out.println("An error occurred saving to file");
             e.printStackTrace();
         }
-    }  
+    }
 
     public static void loadFile() {
         try {
@@ -61,6 +62,6 @@ public class FileManager {
             sc.close();
         } catch (IOException e) {
             System.out.println("An error occured loading file");
-        } 
+        }
     }
 }

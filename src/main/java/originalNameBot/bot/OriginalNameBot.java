@@ -1,4 +1,5 @@
 package originalNameBot.bot;
+
 import java.util.Scanner;
 
 import originalNameBot.exceptions.IllegalCommandException;
@@ -27,7 +28,6 @@ public class OriginalNameBot {
                 } else {
                     Parser.parseTask(input, command);
                 }
-
 
             } catch (IllegalCommandException e) {
                 System.out.println(BotLines.UNKNOWN_COMMAND);

@@ -1,4 +1,5 @@
 package originalNameBot.tasks;
+
 import originalNameBot.utils.Date;
 
 public class Deadline extends Task {
@@ -10,8 +11,9 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
-    
+
 }
