@@ -9,7 +9,7 @@ public class Task {
     public Task(String description, String input) {
         this.description = description;
         this.isDone = false;
-        this.creationString = input;
+        this.creationString = input.strip();
     }
 
     @Override
@@ -31,6 +31,10 @@ public class Task {
 
     public String getCreationString() {
         return this.creationString;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
 }
