@@ -13,12 +13,20 @@ public class Tasklist {
 
     private static List<Task> tasks = new ArrayList<>();
 
+    /**
+     * Prints all the tasks in the 'tasks' list.
+     */
     public static void listTasks() {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println(i + 1 + ". " + tasks.get(i).toString());
         }
     }
 
+    /**
+     * Marks a task as done. If the input string specifies a task that does not exist, the method prints the exception.
+     * 
+     * @param input A string that specifies the task number (task number is the number that shows up on the left of the task when the 'list' command is run) to mark as done
+     */
     public static void markTask(String input) {
         try {
             int i = Parser.parseMark(input);
@@ -35,6 +43,11 @@ public class Tasklist {
         }
     }
 
+    /**
+     * Marks a task as not done. If the input string specifies a task that does not exist, the method prints the exception.
+     * 
+     * @param input A string that specifies the task number (task number is the number that shows up on the left of the task when the 'list' command is run) to mark as not done
+     */
     public static void unmarkTask(String input) {
         try {
             int i = Parser.parseUnmark(input);
@@ -51,6 +64,12 @@ public class Tasklist {
         }
     }
 
+    /**
+     * Adds a new task to the tasklist, prints a confirmation message and the task count, then saves to the txt file.
+     * 
+     * @param input The string that was initially input by the user
+     * @param command The command type of the input
+     */
     public static void addTask(String input, String command) {
 
         Task newTask = null;
@@ -78,6 +97,11 @@ public class Tasklist {
 
     }
 
+    /**
+     * Deletes the task, prints a confirmation message and the task count, then saves to the txt file. If the input string specifies a task that does not exist, the method prints the exception.
+     * 
+     * @param input A string that specifies the task number (task number is the number that shows up on the left of the task when the 'list' command is run)
+     */
     public static void deleteTask(String input) {
         try {
             int i = Parser.parseDelete(input);
@@ -96,6 +120,9 @@ public class Tasklist {
         }
     }
 
+    /**
+     * Prints a message that indicates the task count.
+     */
     public static void countTasks() {
         if (tasks.size() == 0) {
             System.out.println("You have no tasks");

@@ -20,6 +20,10 @@ public class Parser {
     private static String DELETE = "^delete *(\\d*)";
     private static String FIND = "^find *(\\S+.*)";
 
+    /**
+     * Returns true if the input starts with list/todo/deadline/event/mark/unmark/bye/delete.
+     * @param input User input
+     */
     public static boolean isValid(String input) {
         return Pattern.matches(VALID_COMMANDS, input);
     }
@@ -98,6 +102,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an input string that unmarks tasks. 
+     * @param input User input string that marks tasks as not done.
+     * @return int specified by the user
+     * @throws IllegalCommandException if the unmark input format is invalid.
+     * @throws NoTaskFoundException if the user specifies a task that doesn't exist.
+     */
     public static int parseUnmark(String input)
             throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(UNMARK);
@@ -111,6 +122,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an input string that deletes tasks. 
+     * @param input User input string that deletes tasks.
+     * @return int specified by the user.
+     * @throws IllegalCommandException if the delete input format is invalid.
+     * @throws NoTaskFoundException if the user specifies a task that doesn't exist.
+     */
     public static int parseDelete(String input)
             throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(DELETE);
