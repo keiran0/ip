@@ -1,0 +1,58 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import originalNameBot.exceptions.IllegalCommandException;
+import originalNameBot.utils.Date;
+import originalNameBot.utils.Formatter;
+
+public class DateTest {
+
+    @Test
+    public void incorrectFormatThrowsIllegalCommandException() {
+        Exception exception = assertThrows(IllegalCommandException.class, () -> {
+            Date date = new Date("abc");
+        });
+
+        String expected = "Provide valid date format!";
+        String actual = exception.getMessage();
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void invalidDatesThrowsIllegalCommandException() {
+        Exception exception = assertThrows(IllegalCommandException.class, () -> {
+            Date date = new Date("2026-01-33");
+        });
+
+        String expected = "Provide valid date! Check valid day/month/year values";
+        String actual = exception.getMessage();
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void invalidDateTimeThrowsIllegalCommandException() {
+        Exception exception = assertThrows(IllegalCommandException.class, () -> {
+            Date date = new Date("2026-01-01 2400");
+        });
+
+        String expected = "Provide valid datetime format! Check valid day/month/year/time values";
+        String actual = exception.getMessage();
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void testDateWithoutTimeToString() throws IllegalCommandException {
+        Date date = new Date("2026-01-29");
+        assertEquals(date.toString(), "Jan 29 2026");
+    }
+
+    @Test
+    public void testDateWithTimeToString() throws IllegalCommandException {
+        Date date = new Date("2026-01-29 1900");
+        assertEquals(date.toString(), "Jan 29 2026 19:00");
+    }
+
+}
