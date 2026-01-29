@@ -15,6 +15,9 @@ public class FileManager {
     private static String file = "tasks.txt";
     private static String filePath = String.join("/", dir, file);
 
+    /**
+     * Creates /data and /data/tasks.txt if they do not exist. If they do, call loadFile
+     */
     public static void initFile() {
         try {
             new File(dir).mkdirs();
@@ -31,6 +34,9 @@ public class FileManager {
         }
     }
 
+    /**
+     * Writes tasks from tasklist into data/tasks.txt
+     */
     public static void writeFile(List<Task> ls) {
         try {
             FileWriter writer = new FileWriter(filePath);
@@ -44,6 +50,9 @@ public class FileManager {
         }
     }  
 
+    /**
+     * Reads tasks from data/tasks.txt into Tasklist
+     */
     public static void loadFile() {
         try {
             Scanner sc = new Scanner(new File(filePath));

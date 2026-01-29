@@ -13,6 +13,11 @@ public class Date {
     private String dateRegex = "(\\d{4}-\\d{2}-\\d{2})";
     private String datetimeRegex = dateRegex + " *" +  "(\\d{4})";
 
+    /**
+     * Creates a new Date
+     * @param input String input of the date. Accepts the format YYYY-MM-DD or YYYY-MM-DD-HHMM, throws IllegalCommandException otherwise.
+     * @throws IllegalCommandException
+     */
     public Date(String input) throws IllegalCommandException {
         Pattern datePattern = Pattern.compile(dateRegex);
         Pattern dateTimePattern = Pattern.compile(datetimeRegex);

@@ -18,11 +18,20 @@ public class Parser {
     private static String unmark = "^unmark *(\\d*)";
     private static String delete = "^delete *(\\d*)";
 
+    /**
+     * Returns true if the input starts with list/todo/deadline/event/mark/unmark/bye/delete.
+     * @param input User input
+     */
     public static boolean isValid(String input) {
         return Pattern.matches(validCommands, input);
         // can throw invalidcommandexception here?
     }
 
+    /**
+     * Writes tasks from tasklist into data/tasks.txt
+     * @param input User input to create/delete/mark/unmark/list tasks
+     * @param command String that specifies the command given in the input.
+     */
     public static void parseTask(String input, String command) {
         if (command.equals("list")) {
             Tasklist.listTasks();
@@ -45,6 +54,10 @@ public class Parser {
         }
     }
 
+    /**
+     * Obtains the command from user input. Throws IllegalCommandException if the command is invalid.
+     * @param input User input to check for valid commands from
+     */
     public static String obtainCommand(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(validCommands);
         Matcher m = p.matcher(input.strip());
@@ -55,6 +68,10 @@ public class Parser {
         return m.group(1);
     }
 
+    /**
+     * Parses an input string that creates Todo tasks. Throws IllegalCommandException if the todo format is invalid.
+     * @param input User input string that creates Todo tasks
+     */
     public static Todo parseTodo(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(todo);
         Matcher m = p.matcher(input.strip());
@@ -64,6 +81,10 @@ public class Parser {
         return new Todo(description, input);
     }
 
+    /**
+     * Parses an input string that creates Deadline tasks. Throws IllegalCommandException if the deadline format is invalid.
+     * @param input User input string that creates Deadline tasks
+     */
     public static Deadline parseDeadline(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(deadline);
         Matcher m = p.matcher(input.strip());
@@ -74,6 +95,10 @@ public class Parser {
         return new Deadline(description, date, input);
     }
 
+    /**
+     * Parses an input string that creates Event tasks. Throws IllegalCommandException if the event format is invalid.
+     * @param input User input string that creates Event tasks
+     */
     public static Event parseEvent(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(event);
         Matcher m = p.matcher(input.strip());
@@ -85,6 +110,10 @@ public class Parser {
         return new Event(description, from, to, input);
     }
 
+    /**
+     * Parses an input string that marks tasks. Throws IllegalCommandException if the mark input format is invalid, and throws NoTaskFoundException if the user specifies a task that doesn't exist.
+     * @param input User input string that marks tasks as done
+     */
     public static int parseMark(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(mark);
         Matcher m = p.matcher(input.strip());
@@ -98,6 +127,10 @@ public class Parser {
 
     }
 
+    /**
+     * Parses an input string that unmarks tasks. Throws IllegalCommandException if the unmark input format is invalid, and throws NoTaskFoundException if the user specifies a task that doesn't exist.
+     * @param input User input string that marks tasks as not done
+     */
     public static int parseUnmark(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(unmark);
         Matcher m = p.matcher(input.strip());
@@ -110,6 +143,10 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an input string that deletes tasks. Throws IllegalCommandException if the delete input format is invalid, and throws NoTaskFoundException if the user specifies a task that doesn't exist.
+     * @param input User input string that deletes tasks
+     */
     public static int parseDelete(String input) throws IllegalCommandException, NoTaskFoundException {
         Pattern p = Pattern.compile(delete);
         Matcher m = p.matcher(input.strip());

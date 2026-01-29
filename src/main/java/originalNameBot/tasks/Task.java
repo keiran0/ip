@@ -21,18 +21,30 @@ public class Task {
         }
     }
 
+    /**
+     * Marks the task's isDone attribute to true.
+     */
     public void markDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task's isDone attribute to false.
+     */
     public void markNotDone() {
         this.isDone = false;
     }
 
+    /**
+     * Returns the string used to create the task
+     */
     public String getCreationString() {
         return this.creationString;
     }
 
+    /**
+     * Returns the task's isDone attribute
+     */
     public boolean getIsDone() {
         return this.isDone;
     }
