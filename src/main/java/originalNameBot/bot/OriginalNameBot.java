@@ -2,6 +2,7 @@ package originalNameBot.bot;
 import java.util.Scanner;
 
 import originalNameBot.exceptions.IllegalCommandException;
+import originalNameBot.tasks.Tasklist;
 import originalNameBot.utils.FileManager;
 import originalNameBot.utils.Parser;
 
@@ -24,6 +25,9 @@ public class OriginalNameBot {
                 String command = Parser.obtainCommand(input);
                 if (command.equals("bye")) {
                     break;
+                } else if (command.equals("find")) {
+                    String findBy = Parser.parseFind(input);
+                    Tasklist.findTask(findBy);
                 } else {
                     Parser.parseTask(input, command);
                 }
