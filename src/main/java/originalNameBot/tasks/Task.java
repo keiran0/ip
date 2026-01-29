@@ -37,4 +37,13 @@ public class Task {
         return this.isDone;
     }
 
+    /**
+     * Finds a sequence of character in the description attribute of the task.
+     * @param input Sequence of characters to search in the description.
+     * @return true if the description contains the input, false otherwise.
+     */
+    public boolean find(String input) {
+        return this.description.contains(input);
+    }
+
 }

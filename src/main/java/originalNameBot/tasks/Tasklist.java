@@ -108,4 +108,18 @@ public class Tasklist {
 
     }
 
+    /**
+     * Finds all the tasks that contains the filter param. 
+     * @param filter
+     */
+    public static void findTask(String filter) {
+        System.out.println("Here are the tasks you found:");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.find(filter)) {
+                System.out.println((i + 1) + ". " + task.toString());
+            }
+        }
+    }
+
 }

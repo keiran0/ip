@@ -11,13 +11,14 @@ import originalNameBot.tasks.Todo;
 
 public class Parser {
 
-    private static String VALID_COMMANDS = "^(list|todo|deadline|event|mark|unmark|bye|delete).*";
+    private static String VALID_COMMANDS = "^(list|todo|deadline|event|mark|unmark|bye|delete|find).*";
     private static String TODO = "todo *(\\S+.*)";
     private static String EVENT = "event *(\\S+.*)/from (.*) /to (.*)";
     private static String DEADLINE = "deadline *(\\S+.*) /by (.*)";
     private static String MARK = "^mark *(\\d*)";
     private static String UNMARK = "^unmark *(\\d*)";
     private static String DELETE = "^delete *(\\d*)";
+    private static String FIND = "^find *(\\S+.*)";
 
     public static boolean isValid(String input) {
         return Pattern.matches(VALID_COMMANDS, input);
@@ -120,6 +121,16 @@ public class Parser {
             return Integer.parseInt(m.group(1));
         } catch (NumberFormatException e) {
             throw new NoTaskFoundException("Enter a number!!!");
+        }
+    }
+
+    public static String parseFind(String input) throws IllegalCommandException {
+        Pattern p = Pattern.compile(FIND);
+        Matcher m = p.matcher(input.strip());
+        if (!m.find()) {
+            throw new IllegalCommandException("Invalid find format");
+        } else {
+            return m.group(1);
         }
     }
 
