@@ -1,11 +1,8 @@
-import org.junit.jupiter.api.Test;
+package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import originalNameBot.exceptions.IllegalCommandException;
-import originalNameBot.utils.Date;
-import originalNameBot.tasks.Todo;
+import org.junit.jupiter.api.Test;
 
 public class TodoTest {
     private static Todo todo = new Todo("Submit assignment", "todo Submit assignment");
