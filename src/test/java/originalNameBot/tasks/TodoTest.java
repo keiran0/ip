@@ -20,7 +20,7 @@ public class TodoTest {
     @Test
     public void testTodoMarkDone() {
         todo.markDone();
-        assertEquals(todo.getIsDone(), true);
+        assertEquals(todo.isDone(), true);
         String expected = "[T][X] Submit assignment";
         assertEquals(todo.toString(), expected);
     }
@@ -29,7 +29,7 @@ public class TodoTest {
     public void testTodoMarkNotDone() {
         todo.markDone();
         todo.markNotDone();
-        assertEquals(todo.getIsDone(), false);
+        assertEquals(todo.isDone(), false);
     }
 
 

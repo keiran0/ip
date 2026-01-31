@@ -32,7 +32,7 @@ public class DeadlineTest {
         Date date = new Date("2026-01-28 1900");
         Deadline task = new Deadline("Submit assignment", date, "deadline Submit assignment");
         task.markDone();
-        assertEquals(task.getIsDone(), true);
+        assertEquals(task.isDone(), true);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class DeadlineTest {
         Deadline task = new Deadline("Submit assignment", date, "deadline Submit assignment");
         task.markDone();
         task.markNotDone();
-        assertEquals(task.getIsDone(), false);
+        assertEquals(task.isDone(), false);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class DeadlineTest {
         Date date = new Date("2000-10-10 1900");
         Deadline deadline = new Deadline("testdeadline", date, input);
 
-        assertEquals(deadline.getIsDone(), deadlineFromParser.getIsDone());
+        assertEquals(deadline.isDone(), deadlineFromParser.isDone());
         assertEquals(deadline.getCreationString(), deadlineFromParser.getCreationString());
         assertEquals(deadline.toString(), deadlineFromParser.toString());
 

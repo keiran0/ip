@@ -55,7 +55,7 @@ public class EventTest {
         Event event = new Event("Submit assignment", dateFirst, dateSecond,
                 "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
         event.markDone();
-        assertEquals(event.getIsDone(), true);
+        assertEquals(event.isDone(), true);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class EventTest {
                 "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
         event.markDone();
         event.markNotDone();
-        assertEquals(event.getIsDone(), false);
+        assertEquals(event.isDone(), false);
     }
 
 }
