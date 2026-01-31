@@ -36,7 +36,6 @@ public class Date {
                 this.datetime = datetime;
                 this.date = date;
             } catch (DateTimeException e) {
-                System.out.println("Check localdatetime parse function");
                 throw new IllegalCommandException(
                         "Provide valid datetime format! Check valid day/month/year/time values");
             }

@@ -31,12 +31,14 @@ public class Parser {
         return Pattern.matches(VALID_COMMANDS, input);
     }
 
-    public static void parseCommand(String input, String command)
+    public static void parseCommand(String input)
             throws IllegalCommandException, NoTaskFoundException {
 
         if (!Parser.isValid(input)) {
             System.out.println(BotLines.UNKNOWN_COMMAND);
         }
+
+        String command = Parser.obtainCommand(input);
 
         Task newTask;
 

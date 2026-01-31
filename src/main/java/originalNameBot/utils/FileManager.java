@@ -37,6 +37,7 @@ public class FileManager {
 
     /**
      * Writes tasks from tasklist into data/tasks.txt
+     * @param ls Tasklist
      */
     public static void writeFile(List<Task> ls) {
         try {
@@ -61,8 +62,7 @@ public class FileManager {
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 try {
-                    String command = Parser.obtainCommand(input);
-                    Parser.parseCommand(input, command);
+                    Parser.parseCommand(input);
                 } catch (IllegalCommandException e) {
                     System.out.println("Wrong command in save file:" + input);
                     continue;

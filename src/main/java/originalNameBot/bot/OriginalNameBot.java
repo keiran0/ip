@@ -22,7 +22,7 @@ public class OriginalNameBot {
                 if (command.equals("bye")) {
                     break;
                 } else {
-                    Parser.parseCommand(input, command);
+                    Parser.parseCommand(input);
                 }
             } catch (IllegalCommandException e) {
                 System.out.println(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
