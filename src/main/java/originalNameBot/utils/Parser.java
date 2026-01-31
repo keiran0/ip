@@ -31,6 +31,12 @@ public class Parser {
         return Pattern.matches(VALID_COMMANDS, input);
     }
 
+    /**
+     * Parses an input command and executes the command's respective actions.
+     * @param input Input command from user.
+     * @throws IllegalCommandException when command is wrong.
+     * @throws NoTaskFoundException when command is correct, but the task attempted to be found does not exist.
+     */
     public static void parseCommand(String input)
             throws IllegalCommandException, NoTaskFoundException {
 
@@ -74,6 +80,12 @@ public class Parser {
 
     }
 
+    /**
+     * Obtains the command from the input.
+     * @param input User input
+     * @return command type from the user input.
+     * @throws IllegalCommandException if command type is invalid.
+     */
     public static String obtainCommand(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(VALID_COMMANDS);
         Matcher m = p.matcher(input.strip());
@@ -85,6 +97,12 @@ public class Parser {
         return m.group(1);
     }
 
+    /**
+     * Parses a todo command.
+     * @param input User input string.
+     * @return Todo created from the user input.
+     * @throws IllegalCommandException if format of the user input is invalid.
+     */
     public static Todo parseTodo(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(TODO);
         Matcher m = p.matcher(input.strip());
@@ -95,6 +113,12 @@ public class Parser {
         return new Todo(description, input);
     }
 
+    /**
+     * Parses a deadline command.
+     * @param input User input string.
+     * @return Deadline created from the user input.
+     * @throws IllegalCommandException if format of the user input is invalid.
+     */
     public static Deadline parseDeadline(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(DEADLINE);
         Matcher m = p.matcher(input.strip());
@@ -106,6 +130,12 @@ public class Parser {
         return new Deadline(description, date, input);
     }
 
+    /**
+     * Parses an event command.
+     * @param input User input string.
+     * @return Event created from the user input.
+     * @throws IllegalCommandException if format of the user input is invalid.
+     */
     public static Event parseEvent(String input) throws IllegalCommandException {
         Pattern p = Pattern.compile(EVENT);
         Matcher m = p.matcher(input.strip());

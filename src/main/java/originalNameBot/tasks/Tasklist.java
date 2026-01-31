@@ -108,7 +108,6 @@ public class Tasklist {
 
     /**
      * Finds all the tasks that contains the filter param.
-     * 
      * @param filter
      */
     public static void findTask(String filter) {
