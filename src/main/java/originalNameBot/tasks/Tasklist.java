@@ -6,6 +6,9 @@ import java.util.List;
 import originalnamebot.bot.BotLines;
 import originalnamebot.utils.FileManager;
 
+/**
+ * Tasklist contains methods to manipulate and display tasks.
+ */
 public class Tasklist {
 
     private static List<Task> tasks = new ArrayList<>();
@@ -23,7 +26,7 @@ public class Tasklist {
      * Marks a task as done. If the input string specifies a task that does not exist, the method
      * prints the exception.
      *
-     * @param input A string that specifies the task number (task number is the number that shows up
+     * @param i Task number to mark as done (task number is the number that shows up
      *        on the left of the task when the 'list' command is run) to mark as done
      */
     public static void markTask(int i) {
@@ -41,7 +44,7 @@ public class Tasklist {
      * Marks a task as not done. If the input string specifies a task that does not exist, the
      * method prints the exception.
      *
-     * @param input A string that specifies the task number (task number is the number that shows up
+     * @param i Task number to mark as not done (task number is the number that shows up
      *        on the left of the task when the 'list' command is run) to mark as not done
      */
     public static void unmarkTask(int i) {
@@ -58,8 +61,7 @@ public class Tasklist {
      * Adds a new task to the tasklist, prints a confirmation message and the task count, then saves
      * to the txt file.
      *
-     * @param input The string that was initially input by the user
-     * @param command The command type of the input
+     * @param task The task to add to the task list.
      */
     public static void addTask(Task task) {
 
@@ -75,7 +77,7 @@ public class Tasklist {
      * file. If the input string specifies a task that does not exist, the method prints the
      * exception.
      *
-     * @param input A string that specifies the task number (task number is the number that shows up
+     * @param i Task number to delete (task number is the number that shows up
      *        on the left of the task when the 'list' command is run)
      */
     public static void deleteTask(int i) {
@@ -109,7 +111,7 @@ public class Tasklist {
     /**
      * Finds all the tasks that contains the filter param.
      *
-     * @param filter
+     * @param filter String to filter the task's description by.
      */
     public static void findTask(String filter) {
         System.out.println("Here are the tasks you found:");

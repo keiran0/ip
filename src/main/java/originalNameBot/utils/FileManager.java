@@ -10,6 +10,11 @@ import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
 import originalnamebot.tasks.Task;
 
+/**
+ * FileManager handles reading and writing to the file in /data. It contains a function `initFile`
+ * to initialize the directory and create the file if it doesn't exist, and functions to read and
+ * write to the file.
+ */
 public class FileManager {
 
     private static String dir = "data";

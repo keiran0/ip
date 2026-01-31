@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The Formatter class contains methods to format LocalDate and LocalDateTime to String representation.
+ */
 public class Formatter {
     /**
      * Returns a string representation of LocalDate into MMM dd yyyy format.

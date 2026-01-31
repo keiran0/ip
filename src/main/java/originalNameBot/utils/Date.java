@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 
 import originalnamebot.exceptions.IllegalCommandException;
 
+/**
+ * Date contains methods to parse date and datetime from strings. It supports both dates and
+ * datetimes and will be displayed according to their type.
+ */
 public class Date {
     private boolean hasTime;
     private LocalDateTime datetime;

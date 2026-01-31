@@ -7,6 +7,9 @@ import originalnamebot.exceptions.NoTaskFoundException;
 import originalnamebot.utils.FileManager;
 import originalnamebot.utils.Parser;
 
+/**
+ * The entry point of the application. It takes in user input, parses the command and controls tasks.
+ */
 public class OriginalNameBot {
 
     /**

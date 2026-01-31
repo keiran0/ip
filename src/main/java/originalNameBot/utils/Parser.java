@@ -12,17 +12,21 @@ import originalnamebot.tasks.Task;
 import originalnamebot.tasks.Tasklist;
 import originalnamebot.tasks.Todo;
 
+/**
+ * Parser contains methods to parse different user commands. It also calls functions from other
+ * classes to execute the command if the command is valid.
+ */
 public class Parser {
 
-    private static String VALID_COMMANDS =
+    private static final String VALID_COMMANDS =
             "^(list|todo|deadline|event|mark|unmark|bye|delete|find).*";
-    private static String TODO = "todo *(\\S+.*)";
-    private static String EVENT = "event *(\\S+.*)/from (.*) /to (.*)";
-    private static String DEADLINE = "deadline *(\\S+.*) /by (.*)";
-    private static String MARK = "^mark *(\\d*)";
-    private static String UNMARK = "^unmark *(\\d*)";
-    private static String DELETE = "^delete *(\\d*)";
-    private static String FIND = "^find *(\\S+.*)";
+    private static final String TODO = "todo *(\\S+.*)";
+    private static final String EVENT = "event *(\\S+.*)/from (.*) /to (.*)";
+    private static final String DEADLINE = "deadline *(\\S+.*) /by (.*)";
+    private static final String MARK = "^mark *(\\d*)";
+    private static final String UNMARK = "^unmark *(\\d*)";
+    private static final String DELETE = "^delete *(\\d*)";
+    private static final String FIND = "^find *(\\S+.*)";
 
     /**
      * Returns true if the input starts with list/todo/deadline/event/mark/unmark/bye/delete.

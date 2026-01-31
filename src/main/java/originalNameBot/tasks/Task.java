@@ -1,11 +1,20 @@
 package originalnamebot.tasks;
 
+/**
+ * A task contains a description and an isDone attribute, as well as methods to set isDone to true or false.
+ */
 public class Task {
 
     private String description;
     private boolean isDone = false;
     private String creationString;
 
+    /**
+     * Constructor for Task.
+     *
+     * @param description Description of Task.
+     * @param input Input string provided by the user. Used to save/load from data.
+     */
     public Task(String description, String input) {
         this.description = description;
         this.creationString = input.strip();
