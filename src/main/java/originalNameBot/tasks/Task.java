@@ -3,12 +3,11 @@ package originalNameBot.tasks;
 public class Task {
 
     private String description;
-    private boolean isDone;
+    private boolean isDone = false;
     private String creationString;
 
     public Task(String description, String input) {
         this.description = description;
-        this.isDone = false;
         this.creationString = input.strip();
     }
 
@@ -47,7 +46,7 @@ public class Task {
      * Returns the task's isDone attribute.
      * @return isDone attribute of the task.
      */
-    public boolean getIsDone() {
+    public boolean isDone() {
         return this.isDone;
     }
 
@@ -57,7 +56,7 @@ public class Task {
      * @return true if the description contains the input, false otherwise.
      */
     public boolean find(String input) {
-        return this.description.contains(input);
+        return this.description.toLowerCase().contains(input.toLowerCase().strip());
     }
 
 }
