@@ -1,4 +1,4 @@
-package originalNameBot.tasks;
+package originalnamebot.tasks;
 
 public class Todo extends Task {
     public Todo(String description, String command) {

@@ -1,4 +1,4 @@
-package originalNameBot.tasks;
+package originalnamebot.tasks;
 
 public class Task {
 
@@ -36,6 +36,7 @@ public class Task {
 
     /**
      * Returns the string used to create the task.
+     *
      * @return String used to create the task.
      */
     public String getCreationString() {
@@ -44,6 +45,7 @@ public class Task {
 
     /**
      * Returns the task's isDone attribute.
+     *
      * @return isDone attribute of the task.
      */
     public boolean isDone() {
@@ -52,6 +54,7 @@ public class Task {
 
     /**
      * Finds a sequence of character in the description attribute of the task.
+     *
      * @param input Sequence of characters to search in the description.
      * @return true if the description contains the input, false otherwise.
      */

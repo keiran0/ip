@@ -1,13 +1,19 @@
-package originalNameBot.bot;
+package originalnamebot.bot;
 
 import java.util.Scanner;
 
-import originalNameBot.exceptions.IllegalCommandException;
-import originalNameBot.exceptions.NoTaskFoundException;
-import originalNameBot.utils.FileManager;
-import originalNameBot.utils.Parser;
+import originalnamebot.exceptions.IllegalCommandException;
+import originalnamebot.exceptions.NoTaskFoundException;
+import originalnamebot.utils.FileManager;
+import originalnamebot.utils.Parser;
 
 public class OriginalNameBot {
+
+    /**
+     * Runs the application until the 'bye' command is input.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println(BotLines.GREETING);
         FileManager.initFile();
@@ -28,7 +34,7 @@ public class OriginalNameBot {
                 System.out.println(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
             } catch (NoTaskFoundException e) {
                 System.out.println(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
-            };
+            }
 
         }
 

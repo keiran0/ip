@@ -1,10 +1,10 @@
-package originalNameBot.tasks;
+package originalnamebot.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import originalNameBot.bot.BotLines;
-import originalNameBot.utils.FileManager;
+import originalnamebot.bot.BotLines;
+import originalnamebot.utils.FileManager;
 
 public class Tasklist {
 
@@ -22,7 +22,7 @@ public class Tasklist {
     /**
      * Marks a task as done. If the input string specifies a task that does not exist, the method
      * prints the exception.
-     * 
+     *
      * @param input A string that specifies the task number (task number is the number that shows up
      *        on the left of the task when the 'list' command is run) to mark as done
      */
@@ -34,13 +34,13 @@ public class Tasklist {
             System.out.println(task);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
-        } 
+        }
     }
 
     /**
      * Marks a task as not done. If the input string specifies a task that does not exist, the
      * method prints the exception.
-     * 
+     *
      * @param input A string that specifies the task number (task number is the number that shows up
      *        on the left of the task when the 'list' command is run) to mark as not done
      */
@@ -51,13 +51,13 @@ public class Tasklist {
             System.out.println(BotLines.TASK_UNMARKED);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
-        } 
+        }
     }
 
     /**
      * Adds a new task to the tasklist, prints a confirmation message and the task count, then saves
      * to the txt file.
-     * 
+     *
      * @param input The string that was initially input by the user
      * @param command The command type of the input
      */
@@ -74,7 +74,7 @@ public class Tasklist {
      * Deletes the task, prints a confirmation message and the task count, then saves to the txt
      * file. If the input string specifies a task that does not exist, the method prints the
      * exception.
-     * 
+     *
      * @param input A string that specifies the task number (task number is the number that shows up
      *        on the left of the task when the 'list' command is run)
      */
@@ -88,7 +88,7 @@ public class Tasklist {
             FileManager.writeFile(tasks);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
-        } 
+        }
     }
 
     /**
@@ -108,6 +108,7 @@ public class Tasklist {
 
     /**
      * Finds all the tasks that contains the filter param.
+     *
      * @param filter
      */
     public static void findTask(String filter) {

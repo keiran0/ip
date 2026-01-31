@@ -1,4 +1,4 @@
-package originalNameBot.utils;
+package originalnamebot.utils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import originalNameBot.exceptions.IllegalCommandException;
-import originalNameBot.exceptions.NoTaskFoundException;
-import originalNameBot.tasks.Task;
+import originalnamebot.exceptions.IllegalCommandException;
+import originalnamebot.exceptions.NoTaskFoundException;
+import originalnamebot.tasks.Task;
 
 public class FileManager {
 
@@ -36,6 +36,7 @@ public class FileManager {
 
     /**
      * Writes tasks from tasklist into data/tasks.txt
+     *
      * @param ls Tasklist
      */
     public static void writeFile(List<Task> ls) {
@@ -65,7 +66,8 @@ public class FileManager {
                     System.out.println("Wrong command in save file:" + input);
                     continue;
                 } catch (NoTaskFoundException e) {
-                    
+                    System.out.println("No task found!");
+                    continue;
                 }
             }
             sc.close();

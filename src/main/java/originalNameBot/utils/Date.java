@@ -1,10 +1,12 @@
-package originalNameBot.utils;
+package originalnamebot.utils;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.regex.*;
-import originalNameBot.exceptions.IllegalCommandException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import originalnamebot.exceptions.IllegalCommandException;
 
 public class Date {
     private boolean hasTime;
@@ -16,9 +18,10 @@ public class Date {
 
     /**
      * Creates a new Date.
-     * @param input String input of the date. Accepts the format YYYY-MM-DD or YYYY-MM-DD-HHMM, throws IllegalCommandException otherwise.
+     *
+     * @param input String input of the date. Accepts the format YYYY-MM-DD or YYYY-MM-DD-HHMM.
      * @return Date object created from the input string.
-     * @throws IllegalCommandException
+     * @throws IllegalCommandException if format is wrong.
      */
     public Date(String input) throws IllegalCommandException {
         Pattern datePattern = Pattern.compile(dateRegex);

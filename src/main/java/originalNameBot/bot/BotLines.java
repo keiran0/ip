@@ -1,5 +1,8 @@
-package originalNameBot.bot;
+package originalnamebot.bot;
 
+/**
+ * Lines that the bot says
+ */
 public enum BotLines {
     GREETING {
         @Override

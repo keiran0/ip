@@ -1,14 +1,16 @@
-package originalNameBot.utils;
+package originalnamebot.utils;
 
-import java.util.regex.*;
-import originalNameBot.bot.BotLines;
-import originalNameBot.exceptions.IllegalCommandException;
-import originalNameBot.exceptions.NoTaskFoundException;
-import originalNameBot.tasks.Deadline;
-import originalNameBot.tasks.Event;
-import originalNameBot.tasks.Task;
-import originalNameBot.tasks.Tasklist;
-import originalNameBot.tasks.Todo;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import originalnamebot.bot.BotLines;
+import originalnamebot.exceptions.IllegalCommandException;
+import originalnamebot.exceptions.NoTaskFoundException;
+import originalnamebot.tasks.Deadline;
+import originalnamebot.tasks.Event;
+import originalnamebot.tasks.Task;
+import originalnamebot.tasks.Tasklist;
+import originalnamebot.tasks.Todo;
 
 public class Parser {
 
@@ -24,7 +26,7 @@ public class Parser {
 
     /**
      * Returns true if the input starts with list/todo/deadline/event/mark/unmark/bye/delete.
-     * 
+     *
      * @param input User input
      */
     public static boolean isValid(String input) {
@@ -33,9 +35,11 @@ public class Parser {
 
     /**
      * Parses an input command and executes the command's respective actions.
+     *
      * @param input Input command from user.
      * @throws IllegalCommandException when command is wrong.
-     * @throws NoTaskFoundException when command is correct, but the task attempted to be found does not exist.
+     * @throws NoTaskFoundException when command is correct, but the task attempted to be found does
+     *         not exist.
      */
     public static void parseCommand(String input)
             throws IllegalCommandException, NoTaskFoundException {
@@ -76,12 +80,14 @@ public class Parser {
         case "delete":
             Tasklist.deleteTask(Parser.parseDelete(input));
             break;
-        };
-
+        default:
+            break;
+        }
     }
 
     /**
      * Obtains the command from the input.
+     *
      * @param input User input
      * @return command type from the user input.
      * @throws IllegalCommandException if command type is invalid.
@@ -99,6 +105,7 @@ public class Parser {
 
     /**
      * Parses a todo command.
+     *
      * @param input User input string.
      * @return Todo created from the user input.
      * @throws IllegalCommandException if format of the user input is invalid.
@@ -115,6 +122,7 @@ public class Parser {
 
     /**
      * Parses a deadline command.
+     *
      * @param input User input string.
      * @return Deadline created from the user input.
      * @throws IllegalCommandException if format of the user input is invalid.
@@ -132,6 +140,7 @@ public class Parser {
 
     /**
      * Parses an event command.
+     *
      * @param input User input string.
      * @return Event created from the user input.
      * @throws IllegalCommandException if format of the user input is invalid.
@@ -150,7 +159,7 @@ public class Parser {
 
     /**
      * Parses an input string that marks tasks.
-     * 
+     *
      * @param input User input string that marks tasks as done.
      * @return int specified by the user
      * @throws IllegalCommandException if the mark input format is invalid.
@@ -171,7 +180,7 @@ public class Parser {
 
     /**
      * Parses an input string that unmarks tasks.
-     * 
+     *
      * @param input User input string that marks tasks as not done.
      * @return int specified by the user
      * @throws IllegalCommandException if the unmark input format is invalid.
@@ -193,7 +202,7 @@ public class Parser {
 
     /**
      * Parses an input string that deletes tasks.
-     * 
+     *
      * @param input User input string that deletes tasks.
      * @return int specified by the user.
      * @throws IllegalCommandException if the delete input format is invalid.
@@ -215,7 +224,7 @@ public class Parser {
 
     /**
      * Parses an input string that finds tasks.
-     * 
+     *
      * @param input User input string that finds tasks.
      * @return String that the tasks will be filtered with.
      * @throws IllegalCommandException if the delete input format is invalid.
