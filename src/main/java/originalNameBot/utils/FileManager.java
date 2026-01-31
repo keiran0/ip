@@ -31,7 +31,6 @@ public class FileManager {
             }
         } catch (IOException e) {
             System.out.println("An error occurred handling files");
-            e.printStackTrace();
         }
     }
 
@@ -48,7 +47,6 @@ public class FileManager {
             writer.close();
         } catch (IOException e) {
             System.out.println("An error occurred saving to file");
-            e.printStackTrace();
         }
     }
 
