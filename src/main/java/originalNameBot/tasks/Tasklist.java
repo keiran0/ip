@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import originalNameBot.bot.BotLines;
-import originalNameBot.exceptions.IllegalCommandException;
-import originalNameBot.exceptions.NoTaskFoundException;
 import originalNameBot.utils.FileManager;
-import originalNameBot.utils.Parser;
 
 public class Tasklist {
 
@@ -23,88 +20,66 @@ public class Tasklist {
     }
 
     /**
-     * Marks a task as done. If the input string specifies a task that does not exist, the method prints the exception.
+     * Marks a task as done. If the input string specifies a task that does not exist, the method
+     * prints the exception.
      * 
-     * @param input A string that specifies the task number (task number is the number that shows up on the left of the task when the 'list' command is run) to mark as done
+     * @param input A string that specifies the task number (task number is the number that shows up
+     *        on the left of the task when the 'list' command is run) to mark as done
      */
-    public static void markTask(String input) {
+    public static void markTask(int i) {
         try {
-            int i = Parser.parseMark(input);
             Task task = tasks.get(i - 1);
             task.markDone();
             System.out.println(BotLines.TASK_DONE);
             System.out.println(task);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
-        } catch (NoTaskFoundException e2) {
-            System.out.println(e2);
-        } catch (IllegalCommandException e3) {
-            System.out.println(e3);
-        }
+        } 
     }
 
     /**
-     * Marks a task as not done. If the input string specifies a task that does not exist, the method prints the exception.
+     * Marks a task as not done. If the input string specifies a task that does not exist, the
+     * method prints the exception.
      * 
-     * @param input A string that specifies the task number (task number is the number that shows up on the left of the task when the 'list' command is run) to mark as not done
+     * @param input A string that specifies the task number (task number is the number that shows up
+     *        on the left of the task when the 'list' command is run) to mark as not done
      */
-    public static void unmarkTask(String input) {
+    public static void unmarkTask(int i) {
         try {
-            int i = Parser.parseUnmark(input);
             Task task = tasks.get(i - 1);
             task.markNotDone();
             System.out.println(BotLines.TASK_UNMARKED);
-
         } catch (IndexOutOfBoundsException e) {
             System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
-        } catch (NoTaskFoundException e2) {
-            System.out.println(e2);
-        } catch (IllegalCommandException e3) {
-            System.out.println(e3);
-        }
+        } 
     }
 
     /**
-     * Adds a new task to the tasklist, prints a confirmation message and the task count, then saves to the txt file.
+     * Adds a new task to the tasklist, prints a confirmation message and the task count, then saves
+     * to the txt file.
      * 
      * @param input The string that was initially input by the user
      * @param command The command type of the input
      */
-    public static void addTask(String input, String command) {
+    public static void addTask(Task task) {
 
-        Task newTask = null;
-
-        try {
-            if (command.equals("todo")) {
-                newTask = Parser.parseTodo(input);
-            }
-
-            if (command.equals("deadline")) {
-                newTask = Parser.parseDeadline(input);
-            }
-
-            if (command.equals("event")) {
-                newTask = Parser.parseEvent(input);
-            }
-            tasks.add(newTask);
-            System.out.println("added: " + input.replace(command + " ", ""));
-            countTasks();
-            FileManager.writeFile(tasks);
-        } catch (IllegalCommandException e) {
-            System.out.println(BotLines.BAD_COMMAND_FORMAT);
-            System.out.println(e.getMessage());
-        }
+        tasks.add(task);
+        System.out.println("added: " + task.toString());
+        countTasks();
+        FileManager.writeFile(tasks);
 
     }
 
     /**
-     * Deletes the task, prints a confirmation message and the task count, then saves to the txt file. If the input string specifies a task that does not exist, the method prints the exception.
+     * Deletes the task, prints a confirmation message and the task count, then saves to the txt
+     * file. If the input string specifies a task that does not exist, the method prints the
+     * exception.
      * 
-     * @param input A string that specifies the task number (task number is the number that shows up on the left of the task when the 'list' command is run)
+     * @param input A string that specifies the task number (task number is the number that shows up
+     *        on the left of the task when the 'list' command is run)
      */
-    public static void deleteTask(String input) {
+    public static void deleteTask(int i) {
         try {
-            int i = Parser.parseDelete(input);
             Task task = tasks.get(i - 1);
             tasks.remove(i - 1);
             System.out.println(BotLines.TASK_DELETED);
@@ -113,11 +88,7 @@ public class Tasklist {
             FileManager.writeFile(tasks);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
-        } catch (NoTaskFoundException e2) {
-            System.out.println(e2);
-        } catch (IllegalCommandException e3) {
-            System.out.println(e3);
-        }
+        } 
     }
 
     /**
@@ -136,7 +107,8 @@ public class Tasklist {
     }
 
     /**
-     * Finds all the tasks that contains the filter param. 
+     * Finds all the tasks that contains the filter param.
+     * 
      * @param filter
      */
     public static void findTask(String filter) {

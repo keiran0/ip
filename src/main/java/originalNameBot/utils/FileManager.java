@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import originalNameBot.exceptions.IllegalCommandException;
+import originalNameBot.exceptions.NoTaskFoundException;
 import originalNameBot.tasks.Task;
-import originalNameBot.tasks.Tasklist;
 
 public class FileManager {
 
@@ -62,10 +62,12 @@ public class FileManager {
                 String input = sc.nextLine();
                 try {
                     String command = Parser.obtainCommand(input);
-                    Tasklist.addTask(input, command);
+                    Parser.parseCommand(input, command);
                 } catch (IllegalCommandException e) {
                     System.out.println("Wrong command in save file:" + input);
                     continue;
+                } catch (NoTaskFoundException e) {
+                    
                 }
             }
             sc.close();
