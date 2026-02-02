@@ -6,42 +6,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.Region;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Application {
 
     private ScrollPane scrollPane;
-    private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-
-    private List<DialogBox> chatHistory = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {
         // Setting up required components
         // Most of these code are from the tutorial given
-
-        this.scrollPane = new ScrollPane();
-        this.dialogContainer = new VBox();
-        this.scrollPane.setContent(dialogContainer);
-
         this.userInput = new TextField();
         this.sendButton = new Button("Send");
 
-        this.chatHistory.add(DialogBox.createBotDialogue("Hello!"));
-        this.chatHistory.add(DialogBox.createUserDialoge("testing"));
+        DialogContainer dialogContainer = new DialogContainer();
+        this.scrollPane = new ScrollPane();
+        this.scrollPane.setContent(dialogContainer);
 
-        for (DialogBox dialogBox : chatHistory) {
-            dialogContainer.getChildren().addAll(dialogBox);
-        }
-
+        dialogContainer.add(DialogBox.createUserDialoge("test"));
+        dialogContainer.add(DialogBox.createBotDialogue("tes11t"));
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -64,8 +51,6 @@ public class Main extends Application {
 
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
-
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
 
