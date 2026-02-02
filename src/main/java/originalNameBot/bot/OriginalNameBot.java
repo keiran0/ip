@@ -23,7 +23,6 @@ public class OriginalNameBot {
         try {
             String command = Parser.obtainCommand(input);
             if (command.equals("bye")) {
-
                 Main.exit();
             } else {
                 Parser.parseCommand(input);

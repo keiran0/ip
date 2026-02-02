@@ -67,7 +67,7 @@ public class Main extends Application {
 
     public static void exit() {
         Platform.exit();
-        Main.sendBotMessage(String.valueOf(BotLines.GOODBYE));
+        sendBotMessage(String.valueOf(BotLines.GOODBYE));
     }
 
     public static void handleUserInput() {

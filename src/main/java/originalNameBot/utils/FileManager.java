@@ -9,6 +9,7 @@ import java.util.Scanner;
 import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
 import originalnamebot.tasks.Task;
+import originalnamebot.ui.Main;
 
 /**
  * FileManager handles reading and writing to the file in /data. It contains a function `initFile`
@@ -29,13 +30,13 @@ public class FileManager {
             new File(dir).mkdirs();
             File file = new File(filePath);
             if (file.createNewFile()) {
-                System.out.println("No save file detected, created new file");
+                Main.sendBotMessage("No save file detected, created new file");
             } else {
-                System.out.println("File already exists, reading from file");
+                Main.sendBotMessage("File already exists, reading from file");
                 loadFile();
             }
         } catch (IOException e) {
-            System.out.println("An error occurred handling files");
+            Main.sendBotMessage("An error occurred handling files");
         }
     }
 
@@ -52,7 +53,7 @@ public class FileManager {
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println("An error occurred saving to file");
+            Main.sendBotMessage("An error occurred saving to file");
         }
     }
 
@@ -62,22 +63,22 @@ public class FileManager {
     public static void loadFile() {
         try {
             Scanner sc = new Scanner(new File(filePath));
-            System.out.println("Loading tasks from " + filePath);
+            Main.sendBotMessage("Loading tasks from " + filePath);
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 try {
                     Parser.parseCommand(input);
                 } catch (IllegalCommandException e) {
-                    System.out.println("Wrong command in save file:" + input);
+                    Main.sendBotMessage("Wrong command in save file:" + input);
                     continue;
                 } catch (NoTaskFoundException e) {
-                    System.out.println("No task found!");
+                    Main.sendBotMessage("No task found!");
                     continue;
                 }
             }
             sc.close();
         } catch (IOException e) {
-            System.out.println("An error occured loading file");
+            Main.sendBotMessage("An error occured loading file");
         }
     }
 }

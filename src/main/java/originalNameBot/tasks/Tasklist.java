@@ -5,6 +5,7 @@ import java.util.List;
 
 import originalnamebot.bot.BotLines;
 import originalnamebot.utils.FileManager;
+import originalnamebot.ui.Main;
 
 /**
  * Tasklist contains methods to manipulate and display tasks.
@@ -18,7 +19,7 @@ public class Tasklist {
      */
     public static void listTasks() {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(i + 1 + ". " + tasks.get(i).toString());
+            Main.sendBotMessage(i + 1 + ". " + tasks.get(i).toString());
         }
     }
 
@@ -33,10 +34,10 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             task.markDone();
-            System.out.println(BotLines.TASK_DONE);
-            System.out.println(task);
+            Main.sendBotMessage(String.valueOf(BotLines.TASK_DONE));
+            Main.sendBotMessage(task.toString());
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
+            Main.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
     }
 
@@ -51,9 +52,9 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             task.markNotDone();
-            System.out.println(BotLines.TASK_UNMARKED);
+            Main.sendBotMessage(String.valueOf(BotLines.TASK_UNMARKED));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
+            Main.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
     }
 
@@ -66,7 +67,7 @@ public class Tasklist {
     public static void addTask(Task task) {
 
         tasks.add(task);
-        System.out.println("added: " + task.toString());
+        Main.sendBotMessage("added: " + task.toString());
         countTasks();
         FileManager.writeFile(tasks);
 
@@ -84,12 +85,12 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             tasks.remove(i - 1);
-            System.out.println(BotLines.TASK_DELETED);
-            System.out.println(task);
+            Main.sendBotMessage(String.valueOf(BotLines.TASK_DELETED));
+            Main.sendBotMessage(task.toString());
             countTasks();
             FileManager.writeFile(tasks);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(BotLines.NO_SUCH_TASK_AT_INDEX);
+            Main.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
     }
 
@@ -98,11 +99,11 @@ public class Tasklist {
      */
     public static void countTasks() {
         if (tasks.size() == 0) {
-            System.out.println("You have no tasks");
+            Main.sendBotMessage("You have no tasks");
         } else if (tasks.size() == 1) {
-            System.out.println("You have 1 task in the list. Hurry up and finish it.");
+            Main.sendBotMessage("You have 1 task in the list. Hurry up and finish it.");
         } else {
-            System.out.println(
+            Main.sendBotMessage(
                     "You have " + tasks.size() + " tasks in the list. Hurry up and finish them.");
         }
 
@@ -114,11 +115,11 @@ public class Tasklist {
      * @param filter String to filter the task's description by.
      */
     public static void findTask(String filter) {
-        System.out.println("Here are the tasks you found:");
+        Main.sendBotMessage("Here are the tasks you found:");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
             if (task.find(filter)) {
-                System.out.println((i + 1) + ". " + task.toString());
+                Main.sendBotMessage((i + 1) + ". " + task.toString());
             }
         }
     }
