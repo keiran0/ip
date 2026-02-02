@@ -1,34 +1,30 @@
 package originalnamebot.ui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import originalnamebot.bot.BotLines;
+import originalnamebot.bot.OriginalNameBot;
 
 public class Main extends Application {
 
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
+    private static TextField userInput;
+    private static Button sendButton;
+    private static Scene scene;
+    private static ChatView chatView;
 
     @Override
     public void start(Stage stage) {
         // Setting up required components
         // Most of these code are from the tutorial given
-        this.userInput = new TextField();
-        this.sendButton = new Button("Send");
+        userInput = new TextField();
+        sendButton = new Button("Send");
 
-        ChatView chatView = new ChatView();
-        chatView.add(DialogBox.createUserDialogue("test"));
-        chatView.add(DialogBox.createBotDialogue("tes11t"));
-        chatView.add(DialogBox.createUserDialogue("test"));
-        chatView.add(DialogBox.createUserDialogue("test"));
-        chatView.add(DialogBox.createUserDialogue("test"));
-        chatView.add(DialogBox.createUserDialogue("test"));
-        chatView.add(DialogBox.createUserDialogue("test"));
-
+        chatView = new ChatView();
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(chatView, userInput, sendButton);
@@ -57,6 +53,34 @@ public class Main extends Application {
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        //More code to be added here later
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+
+        OriginalNameBot.init();
+
+    }
+
+    public static void exit() {
+        Platform.exit();
+        Main.sendBotMessage(String.valueOf(BotLines.GOODBYE));
+    }
+
+    public static void handleUserInput() {
+        sendUserMessage(userInput.getText());
+        OriginalNameBot.enterCommand(userInput.getText());
+        userInput.clear();
+    }
+
+    public static void sendBotMessage(String message) {
+        chatView.add(DialogBox.createBotDialogue(message));
+    }
+
+    public static void sendUserMessage(String message) {
+        chatView.add(DialogBox.createUserDialogue(message));
     }
 }
