@@ -25,7 +25,7 @@ public class DialogBox extends HBox {
         return new DialogBox(s, true);
     }
 
-    public static DialogBox createUserDialoge(String s) {
+    public static DialogBox createUserDialogue(String s) {
         return new DialogBox(s, false);
     }
 }

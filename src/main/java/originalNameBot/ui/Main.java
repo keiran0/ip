@@ -21,8 +21,14 @@ public class Main extends Application {
         this.sendButton = new Button("Send");
 
         ChatView chatView = new ChatView();
-        chatView.add(DialogBox.createUserDialoge("test"));
+        chatView.add(DialogBox.createUserDialogue("test"));
         chatView.add(DialogBox.createBotDialogue("tes11t"));
+        chatView.add(DialogBox.createUserDialogue("test"));
+        chatView.add(DialogBox.createUserDialogue("test"));
+        chatView.add(DialogBox.createUserDialogue("test"));
+        chatView.add(DialogBox.createUserDialogue("test"));
+        chatView.add(DialogBox.createUserDialogue("test"));
+
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(chatView, userInput, sendButton);
