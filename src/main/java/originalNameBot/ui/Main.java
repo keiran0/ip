@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import originalnamebot.bot.BotLines;
 import originalnamebot.bot.OriginalNameBot;
 
+/**
+ * The Main class to run the GUI of the application.
+ */
 public class Main extends Application {
 
     private static TextField userInput;
@@ -65,22 +68,37 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Closes the GUI window.
+     */
     public static void exit() {
         Platform.exit();
         sendBotMessage(String.valueOf(BotLines.GOODBYE));
     }
 
+    /**
+     * Obtains the user input from the input field, calls sendUserMessage, then calls OriginalNameBot.enterCommand.
+     * After that, clears the input field.
+     */
     public static void handleUserInput() {
         sendUserMessage(userInput.getText());
         OriginalNameBot.enterCommand(userInput.getText());
         userInput.clear();
     }
 
+    /**
+     * Creates a new dialog box for the bot message.
+     * @param message Message said by bot.
+     */
     public static void sendBotMessage(String message) {
         chatView.add(DialogBox.createBotDialogue(message));
     }
 
-    public static void sendUserMessage(String message) {
+    /**
+     * Creates a new dialog box for the user message. Internal method only used by handleUserInput.
+     * @param message Message said by user.
+     */
+    private static void sendUserMessage(String message) {
         chatView.add(DialogBox.createUserDialogue(message));
     }
 }

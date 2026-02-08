@@ -4,10 +4,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
+/**
+ * Represents a dialog box component used by the chat UI.
+ * Contains factory methods to create new dialog boxes.
+ */
 public class DialogBox extends HBox {
     private Label text;
 
-    public DialogBox(String s, boolean isBot) {
+    private DialogBox(String s, boolean isBot) {
         this.text = new Label(s);
         this.text.setWrapText(true);
         if (isBot) {

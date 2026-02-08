@@ -19,6 +19,10 @@ public class OriginalNameBot {
         FileManager.initFile();
     }
 
+    /**
+     * Handles command input from the user.
+     * @param input User input.
+     */
     public static void enterCommand(String input) {
         try {
             String command = Parser.obtainCommand(input);

@@ -4,10 +4,16 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+/**
+ * ChatView is the upper portion of the user interface.
+ */
 public class ChatView extends ScrollPane {
 
     private VBox dialogueContainer;
 
+    /**
+     * Creates a ChatView with a specific size and layout.
+     */
     public ChatView() {
         VBox dialogContainer = new VBox();
         this.dialogueContainer = dialogContainer;
@@ -20,6 +26,10 @@ public class ChatView extends ScrollPane {
         this.setFitToWidth(true);
     }
 
+    /**
+     * Add a dialogBox to the bottom of the ChatView.
+     * @param dialogBox DialogBox to add.
+     */
     public void add(DialogBox dialogBox) {
         this.dialogueContainer.getChildren().addAll(dialogBox);
     }
