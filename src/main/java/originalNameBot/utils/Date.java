@@ -13,12 +13,13 @@ import originalnamebot.exceptions.IllegalCommandException;
  * datetimes and will be displayed according to their type.
  */
 public class Date {
+
+    private static final String DATE_REGEX = "(\\d{4}-\\d{2}-\\d{2})";
+    private static final String DATETIME_REGEX = DATE_REGEX + " *" + "(\\d{4})";
+
     private boolean hasTime;
     private LocalDateTime datetime;
     private LocalDate date;
-
-    private static String DATE_REGEX = "(\\d{4}-\\d{2}-\\d{2})";
-    private static String DATETIME_REGEX = DATE_REGEX + " *" + "(\\d{4})";
 
     /**
      * Creates a new Date.
