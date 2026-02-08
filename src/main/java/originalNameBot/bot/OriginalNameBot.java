@@ -27,9 +27,7 @@ public class OriginalNameBot {
             } else {
                 Parser.parseCommand(input);
             }
-        } catch (IllegalCommandException e) {
-            Main.sendBotMessage(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
-        } catch (NoTaskFoundException e) {
+        } catch (IllegalCommandException | NoTaskFoundException e) {
             Main.sendBotMessage(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
         }
     }
