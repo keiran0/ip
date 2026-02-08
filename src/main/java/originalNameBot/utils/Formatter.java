@@ -18,11 +18,11 @@ public class Formatter {
     }
 
     /**
-     * Returns a string representation of LocalDateTime in MMM dd YYYY HH:mm format.
+     * Returns a string representation of LocalDateTime in MMM dd yyyy HH:mm format.
      * @param datetime LocalDateTime to format.
      * @return Formatted datetime.
      */
     public static String formatDateTime(LocalDateTime datetime) {
-        return datetime.format(DateTimeFormatter.ofPattern("MMM dd YYYY HH:mm"));
+        return datetime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
 }
