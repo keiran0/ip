@@ -49,11 +49,11 @@ public class Parser {
     public static void parseCommand(String input)
             throws IllegalCommandException, NoTaskFoundException {
 
-        if (!Parser.isValid(input)) {
+        if (!isValid(input)) {
             Main.sendBotMessage(String.valueOf(BotLines.UNKNOWN_COMMAND));
         }
 
-        String command = Parser.obtainCommand(input);
+        String command = obtainCommand(input);
 
         Task newTask;
 
@@ -83,7 +83,7 @@ public class Parser {
             Tasklist.findTask(parseFind(input));
             break;
         case "delete":
-            Tasklist.deleteTask(Parser.parseDelete(input));
+            Tasklist.deleteTask(parseDelete(input));
             break;
         default:
             break;
