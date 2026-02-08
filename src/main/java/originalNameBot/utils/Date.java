@@ -17,8 +17,8 @@ public class Date {
     private LocalDateTime datetime;
     private LocalDate date;
 
-    private String dateRegex = "(\\d{4}-\\d{2}-\\d{2})";
-    private String datetimeRegex = dateRegex + " *" + "(\\d{4})";
+    private static String DATE_REGEX = "(\\d{4}-\\d{2}-\\d{2})";
+    private static String DATETIME_REGEX = DATE_REGEX + " *" + "(\\d{4})";
 
     /**
      * Creates a new Date.
@@ -28,8 +28,8 @@ public class Date {
      * @throws IllegalCommandException if format is wrong.
      */
     public Date(String input) throws IllegalCommandException {
-        Pattern datePattern = Pattern.compile(dateRegex);
-        Pattern dateTimePattern = Pattern.compile(datetimeRegex);
+        Pattern datePattern = Pattern.compile(DATE_REGEX);
+        Pattern dateTimePattern = Pattern.compile(DATETIME_REGEX);
         Matcher dateTimeMatcher = dateTimePattern.matcher(input.strip());
         Matcher dateMatcher = datePattern.matcher(input.strip());
         if (dateTimeMatcher.find()) {
