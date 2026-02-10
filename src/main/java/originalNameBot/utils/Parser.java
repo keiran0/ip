@@ -51,7 +51,10 @@ public class Parser {
 
         if (!isValid(input)) {
             Main.sendBotMessage(String.valueOf(BotLines.UNKNOWN_COMMAND));
+            return;
         }
+
+        assert isValid(input);
 
         String command = obtainCommand(input);
 
@@ -105,6 +108,8 @@ public class Parser {
             throw new IllegalCommandException("Invalid command");
         }
 
+        assert isValid(input);
+
         return m.group(1);
     }
 
@@ -116,6 +121,7 @@ public class Parser {
      * @throws IllegalCommandException if format of the user input is invalid.
      */
     public static Todo parseTodo(String input) throws IllegalCommandException {
+        assert isValid(input);
         Pattern p = Pattern.compile(TODO);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
@@ -133,6 +139,7 @@ public class Parser {
      * @throws IllegalCommandException if format of the user input is invalid.
      */
     public static Deadline parseDeadline(String input) throws IllegalCommandException {
+        assert isValid(input);
         Pattern p = Pattern.compile(DEADLINE);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
@@ -151,6 +158,7 @@ public class Parser {
      * @throws IllegalCommandException if format of the user input is invalid.
      */
     public static Event parseEvent(String input) throws IllegalCommandException {
+        assert isValid(input);
         Pattern p = Pattern.compile(EVENT);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
@@ -171,6 +179,7 @@ public class Parser {
      * @throws NoTaskFoundException if the user specifies a task that doesn't exist.
      */
     public static int parseMark(String input) throws IllegalCommandException, NoTaskFoundException {
+        assert isValid(input);
         Pattern p = Pattern.compile(MARK);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
@@ -193,6 +202,7 @@ public class Parser {
      */
     public static int parseUnmark(String input)
             throws IllegalCommandException, NoTaskFoundException {
+        assert isValid(input);
         Pattern p = Pattern.compile(UNMARK);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
@@ -215,6 +225,7 @@ public class Parser {
      */
     public static int parseDelete(String input)
             throws IllegalCommandException, NoTaskFoundException {
+        assert isValid(input);
         Pattern p = Pattern.compile(DELETE);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
@@ -235,6 +246,7 @@ public class Parser {
      * @throws IllegalCommandException if the delete input format is invalid.
      */
     public static String parseFind(String input) throws IllegalCommandException {
+        assert isValid(input);
         Pattern p = Pattern.compile(FIND);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
