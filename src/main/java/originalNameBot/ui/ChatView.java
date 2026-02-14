@@ -18,6 +18,7 @@ public class ChatView extends ScrollPane {
         VBox dialogContainer = new VBox();
         this.dialogueContainer = dialogContainer;
         this.dialogueContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        this.dialogueContainer.heightProperty().addListener((observable) -> this.setVvalue(1.0));
         this.setContent(this.dialogueContainer);
         this.setPrefSize(385, 535);
         this.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
