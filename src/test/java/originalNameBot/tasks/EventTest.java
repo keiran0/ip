@@ -1,11 +1,15 @@
 package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.utils.Date;
 
+/**
+ * Tests for the Event class.
+ */
 public class EventTest {
 
     private static String dateWithTimeString = "2026-01-28 1900";

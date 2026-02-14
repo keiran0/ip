@@ -3,10 +3,14 @@ package originalnamebot.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
 
+/**
+ * Tests for the Date class.
+ */
 public class DateTest {
 
     /**

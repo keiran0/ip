@@ -1,12 +1,16 @@
 package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.utils.Date;
 import originalnamebot.utils.Parser;
 
+/**
+ * Tests for the Deadline class.
+ */
 public class DeadlineTest {
     /**
      * Tests the string representation of a Deadline without time.

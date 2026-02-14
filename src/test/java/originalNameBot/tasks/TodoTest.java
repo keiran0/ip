@@ -1,8 +1,12 @@
 package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for the Todo class.
+ */
 public class TodoTest {
     private static Todo todo = new Todo("Submit assignment", "todo Submit assignment");
 
