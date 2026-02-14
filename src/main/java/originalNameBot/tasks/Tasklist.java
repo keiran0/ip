@@ -18,9 +18,14 @@ public class Tasklist {
      * Prints all the tasks in the 'tasks' list.
      */
     public static void listTasks() {
-        for (int i = 0; i < tasks.size(); i++) {
-            Main.sendBotMessage(i + 1 + ". " + tasks.get(i).toString());
+        if (tasks.size() == 0) {
+            Main.sendBotMessage("You have no tasks.");
         }
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append(i + 1 + ". " + tasks.get(i).toString() + "\n");
+        }
+        Main.sendBotMessage(sb.toString());
     }
 
     /**
