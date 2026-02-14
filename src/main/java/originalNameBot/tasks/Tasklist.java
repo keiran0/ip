@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import originalnamebot.bot.BotLines;
-import originalnamebot.ui.Main;
+import originalnamebot.ui.MainWindow;
 import originalnamebot.utils.FileManager;
 
 /**
@@ -19,13 +19,13 @@ public class Tasklist {
      */
     public static void listTasks() {
         if (tasks.size() == 0) {
-            Main.sendBotMessage("You have no tasks.");
+            MainWindow.sendBotMessage("You have no tasks.");
         }
         StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < tasks.size(); i++) {
             sb.append(i + 1 + ". " + tasks.get(i).toString() + "\n");
         }
-        Main.sendBotMessage(sb.toString());
+        MainWindow.sendBotMessage(sb.toString());
     }
 
     /**
@@ -39,10 +39,10 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             task.markDone();
-            Main.sendBotMessage(String.valueOf(BotLines.TASK_DONE));
-            Main.sendBotMessage(task.toString());
+            MainWindow.sendBotMessage(String.valueOf(BotLines.TASK_DONE));
+            MainWindow.sendBotMessage(task.toString());
         } catch (IndexOutOfBoundsException e) {
-            Main.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
+            MainWindow.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
     }
 
@@ -57,9 +57,9 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             task.markNotDone();
-            Main.sendBotMessage(String.valueOf(BotLines.TASK_UNMARKED));
+            MainWindow.sendBotMessage(String.valueOf(BotLines.TASK_UNMARKED));
         } catch (IndexOutOfBoundsException e) {
-            Main.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
+            MainWindow.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
     }
 
@@ -72,7 +72,7 @@ public class Tasklist {
     public static void addTask(Task task) {
 
         tasks.add(task);
-        Main.sendBotMessage("added: " + task.toString());
+        MainWindow.sendBotMessage("added: " + task.toString());
         countTasks();
         FileManager.writeFile(tasks);
 
@@ -90,12 +90,12 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             tasks.remove(i - 1);
-            Main.sendBotMessage(String.valueOf(BotLines.TASK_DELETED));
-            Main.sendBotMessage(task.toString());
+            MainWindow.sendBotMessage(String.valueOf(BotLines.TASK_DELETED));
+            MainWindow.sendBotMessage(task.toString());
             countTasks();
             FileManager.writeFile(tasks);
         } catch (IndexOutOfBoundsException e) {
-            Main.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
+            MainWindow.sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
     }
 
@@ -104,11 +104,11 @@ public class Tasklist {
      */
     public static void countTasks() {
         if (tasks.size() == 0) {
-            Main.sendBotMessage("You have no tasks");
+            MainWindow.sendBotMessage("You have no tasks");
         } else if (tasks.size() == 1) {
-            Main.sendBotMessage("You have 1 task in the list. Hurry up and finish it.");
+            MainWindow.sendBotMessage("You have 1 task in the list. Hurry up and finish it.");
         } else {
-            Main.sendBotMessage(
+            MainWindow.sendBotMessage(
                     "You have " + tasks.size() + " tasks in the list. Hurry up and finish them.");
         }
 
@@ -120,11 +120,11 @@ public class Tasklist {
      * @param filter String to filter the task's description by.
      */
     public static void findTask(String filter) {
-        Main.sendBotMessage("Here are the tasks you found:");
+        MainWindow.sendBotMessage("Here are the tasks you found:");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
             if (task.find(filter)) {
-                Main.sendBotMessage((i + 1) + ". " + task.toString());
+                MainWindow.sendBotMessage((i + 1) + ". " + task.toString());
             }
         }
     }

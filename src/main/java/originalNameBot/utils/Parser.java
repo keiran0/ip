@@ -11,7 +11,7 @@ import originalnamebot.tasks.Event;
 import originalnamebot.tasks.Task;
 import originalnamebot.tasks.Tasklist;
 import originalnamebot.tasks.Todo;
-import originalnamebot.ui.Main;
+import originalnamebot.ui.MainWindow;
 
 /**
  * Parser contains methods to parse different user commands. It also calls functions from other
@@ -50,7 +50,7 @@ public class Parser {
             throws IllegalCommandException, NoTaskFoundException {
 
         if (!isValid(input)) {
-            Main.sendBotMessage(String.valueOf(BotLines.UNKNOWN_COMMAND));
+            MainWindow.sendBotMessage(String.valueOf(BotLines.UNKNOWN_COMMAND));
             return;
         }
 

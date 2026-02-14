@@ -10,7 +10,7 @@ import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
 import originalnamebot.tasks.Task;
 import originalnamebot.tasks.Tasklist;
-import originalnamebot.ui.Main;
+import originalnamebot.ui.MainWindow;
 
 /**
  * FileManager handles reading and writing to the file in /data. It contains a function `initFile`
@@ -31,13 +31,13 @@ public class FileManager {
             new File(dir).mkdirs();
             File file = new File(filePath);
             if (file.createNewFile()) {
-                Main.sendBotMessage("No save file detected, created new file");
+                MainWindow.sendBotMessage("No save file detected, created new file");
             } else {
-                Main.sendBotMessage("File already exists, reading from file");
+                MainWindow.sendBotMessage("File already exists, reading from file");
                 loadFile();
             }
         } catch (IOException e) {
-            Main.sendBotMessage("An error occurred handling files");
+            MainWindow.sendBotMessage("An error occurred handling files");
         }
     }
 
@@ -54,7 +54,7 @@ public class FileManager {
             }
             writer.close();
         } catch (IOException e) {
-            Main.sendBotMessage("An error occurred saving to file");
+            MainWindow.sendBotMessage("An error occurred saving to file");
         }
     }
 
@@ -64,25 +64,25 @@ public class FileManager {
     public static void loadFile() {
         try {
             Scanner sc = new Scanner(new File(filePath));
-            Main.sendBotMessage("Loading tasks from " + filePath);
+            MainWindow.sendBotMessage("Loading tasks from " + filePath);
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 try {
-                    Main.setBotSilence(true);
+                    MainWindow.setBotSilence(true);
                     Parser.parseCommand(input);
                 } catch (IllegalCommandException e) {
-                    Main.sendBotMessage("Wrong command in save file:" + input);
+                    MainWindow.sendBotMessage("Wrong command in save file:" + input);
                 } catch (NoTaskFoundException e) {
-                    Main.sendBotMessage("No task found!");
+                    MainWindow.sendBotMessage("No task found!");
                 } finally {
-                    Main.setBotSilence(false);
+                    MainWindow.setBotSilence(false);
                 }
             }
-            Main.setBotSilence(false);
+            MainWindow.setBotSilence(false);
             Tasklist.listTasks();
             sc.close();
         } catch (IOException e) {
-            Main.sendBotMessage("An error occured loading file");
+            MainWindow.sendBotMessage("An error occured loading file");
         }
     }
 }
