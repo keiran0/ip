@@ -9,6 +9,7 @@ import java.util.Scanner;
 import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
 import originalnamebot.tasks.Task;
+import originalnamebot.tasks.Tasklist;
 import originalnamebot.ui.Main;
 
 /**
@@ -67,15 +68,18 @@ public class FileManager {
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 try {
+                    Main.setBotSilence(true);
                     Parser.parseCommand(input);
                 } catch (IllegalCommandException e) {
                     Main.sendBotMessage("Wrong command in save file:" + input);
-                    continue;
                 } catch (NoTaskFoundException e) {
                     Main.sendBotMessage("No task found!");
-                    continue;
+                } finally {
+                    Main.setBotSilence(false);
                 }
             }
+            Main.setBotSilence(false);
+            Tasklist.listTasks();
             sc.close();
         } catch (IOException e) {
             Main.sendBotMessage("An error occured loading file");

@@ -19,6 +19,7 @@ public class Main extends Application {
     private static Button sendButton;
     private static Scene scene;
     private static ChatView chatView;
+    private static boolean isSilenced = false;
 
     @Override
     public void start(Stage stage) {
@@ -76,6 +77,10 @@ public class Main extends Application {
         sendBotMessage(String.valueOf(BotLines.GOODBYE));
     }
 
+    public static void setBotSilence(boolean bool) {
+        isSilenced = bool;
+    }
+
     /**
      * Obtains the user input from the input field, calls sendUserMessage, then calls OriginalNameBot.enterCommand.
      * After that, clears the input field.
@@ -91,7 +96,9 @@ public class Main extends Application {
      * @param message Message said by bot.
      */
     public static void sendBotMessage(String message) {
-        chatView.add(DialogBox.createBotDialogue(message));
+        if (!isSilenced) {
+            chatView.add(DialogBox.createBotDialogue(message));
+        }
     }
 
     /**
