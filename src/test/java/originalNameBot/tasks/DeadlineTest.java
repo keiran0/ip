@@ -1,7 +1,6 @@
 package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
@@ -9,6 +8,9 @@ import originalnamebot.utils.Date;
 import originalnamebot.utils.Parser;
 
 public class DeadlineTest {
+    /**
+     * Tests the string representation of a Deadline without time.
+     */
     @Test
     public void testDeadlineWithoutTimeToString() throws IllegalCommandException {
 
@@ -19,6 +21,9 @@ public class DeadlineTest {
 
     }
 
+    /**
+     * Tests the string representation of a Deadline with time.
+     */
     @Test
     public void testDeadlineWithTimeToString() throws IllegalCommandException {
         Date date = new Date("2026-01-28 1900");
@@ -27,6 +32,9 @@ public class DeadlineTest {
         assertEquals(expected, task.toString());
     }
 
+    /**
+     * Tests marking a Deadline task as done.
+     */
     @Test
     public void testDeadlineMarkDone() throws IllegalCommandException {
         Date date = new Date("2026-01-28 1900");
@@ -35,6 +43,9 @@ public class DeadlineTest {
         assertEquals(task.isDone(), true);
     }
 
+    /**
+     * Tests marking a Deadline task as not done.
+     */
     @Test
     public void testDeadlineMarkNotDone() throws IllegalCommandException {
         Date date = new Date("2026-01-28 1900");
@@ -44,6 +55,9 @@ public class DeadlineTest {
         assertEquals(task.isDone(), false);
     }
 
+    /**
+     * Tests that Deadline creation string matches parsed Deadline.
+     */
     @Test
     public void testDeadlineCreationString() throws IllegalCommandException {
         String input = "deadline testdeadline /by 2000-10-10 1900";

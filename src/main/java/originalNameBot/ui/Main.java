@@ -21,6 +21,10 @@ public class Main extends Application {
     private static ChatView chatView;
     private static boolean isSilenced = false;
 
+    /**
+     * Initializes the GUI and sets up event handlers.
+     * @param stage The primary stage for this application.
+     */
     @Override
     public void start(Stage stage) {
         // Setting up required components
@@ -77,6 +81,10 @@ public class Main extends Application {
         sendBotMessage(String.valueOf(BotLines.GOODBYE));
     }
 
+    /**
+     * Sets whether the bot should send messages to the chat view.
+     * @param bool true to silence the bot, false to allow messages.
+     */
     public static void setBotSilence(boolean bool) {
         isSilenced = bool;
     }

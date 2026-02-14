@@ -1,12 +1,14 @@
 package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 public class TodoTest {
     private static Todo todo = new Todo("Submit assignment", "todo Submit assignment");
 
+    /**
+     * Tests the string representation of a Todo task.
+     */
     @Test
     public void testTodoToString() {
         String expected = "[T][ ] Submit assignment";
@@ -14,6 +16,9 @@ public class TodoTest {
     }
 
 
+    /**
+     * Tests marking a Todo task as done.
+     */
     @Test
     public void testTodoMarkDone() {
         todo.markDone();
@@ -22,6 +27,9 @@ public class TodoTest {
         assertEquals(todo.toString(), expected);
     }
 
+    /**
+     * Tests marking a Todo task as not done.
+     */
     @Test
     public void testTodoMarkNotDone() {
         todo.markDone();

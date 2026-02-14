@@ -1,7 +1,6 @@
 package originalnamebot.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
@@ -13,6 +12,9 @@ public class EventTest {
     private static String dateWithoutTimeString = "2026-01-28";
     private static String description = "Submit assignment";
 
+    /**
+     * Tests the string representation of an Event with mixed date/time formats.
+     */
     @Test
     public void testEventMixedTimesToString() throws IllegalCommandException {
         Date dateWithTime = new Date(EventTest.dateWithTimeString);
@@ -25,6 +27,9 @@ public class EventTest {
         assertEquals(expected, event.toString());
     }
 
+    /**
+     * Tests the string representation of an Event with dates only.
+     */
     @Test
     public void testEventDatesOnlyToString() throws IllegalCommandException {
         Date dateWithoutTimeFirst = new Date(EventTest.dateWithoutTimeString);
@@ -37,6 +42,9 @@ public class EventTest {
         assertEquals(expected, event.toString());
     }
 
+    /**
+     * Tests the string representation of an Event with times only.
+     */
     @Test
     public void testEventTimesOnlyToString() throws IllegalCommandException {
         Date dateFirst = new Date("2026-08-08 1900");
@@ -47,6 +55,9 @@ public class EventTest {
                 + dateSecond.toString() + ")";
     }
 
+    /**
+     * Tests marking an Event task as done.
+     */
     @Test
     public void testEventMarkDone() throws IllegalCommandException {
         Date dateFirst = new Date("2026-08-08 1900");
@@ -57,6 +68,9 @@ public class EventTest {
         assertEquals(event.isDone(), true);
     }
 
+    /**
+     * Tests marking an Event task as not done.
+     */
     @Test
     public void testEventMarkNotDone() throws IllegalCommandException {
         Date dateFirst = new Date("2026-08-08 1900");
