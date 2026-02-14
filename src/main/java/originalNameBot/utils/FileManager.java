@@ -10,7 +10,7 @@ import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
 import originalnamebot.tasks.Task;
 import originalnamebot.tasks.Tasklist;
-import originalnamebot.ui.MainWindow;
+import originalnamebot.ui.Main;
 
 /**
  * FileManager handles reading and writing to the file in /data. It contains a function `initFile`
@@ -31,13 +31,13 @@ public class FileManager {
             new File(dir).mkdirs();
             File file = new File(filePath);
             if (file.createNewFile()) {
-                MainWindow.sendBotMessage("No save file detected, created new file");
+                Main.getMainWindow().sendBotMessage("No save file detected, created new file");
             } else {
-                MainWindow.sendBotMessage("File already exists, reading from file");
+                Main.getMainWindow().sendBotMessage("File already exists, reading from file");
                 loadFile();
             }
         } catch (IOException e) {
-            MainWindow.sendBotMessage("An error occurred handling files");
+            Main.getMainWindow().sendBotMessage("An error occurred handling files");
         }
     }
 
@@ -54,7 +54,7 @@ public class FileManager {
             }
             writer.close();
         } catch (IOException e) {
-            MainWindow.sendBotMessage("An error occurred saving to file");
+            Main.getMainWindow().sendBotMessage("An error occurred saving to file");
         }
     }
 
@@ -64,25 +64,25 @@ public class FileManager {
     public static void loadFile() {
         try {
             Scanner sc = new Scanner(new File(filePath));
-            MainWindow.sendBotMessage("Loading tasks from " + filePath);
+            Main.getMainWindow().sendBotMessage("Loading tasks from " + filePath);
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 try {
-                    MainWindow.setBotSilence(true);
+                    Main.getMainWindow().setBotSilence(true);
                     Parser.parseCommand(input);
                 } catch (IllegalCommandException e) {
-                    MainWindow.sendBotMessage("Wrong command in save file:" + input);
+                    Main.getMainWindow().sendBotMessage("Wrong command in save file:" + input);
                 } catch (NoTaskFoundException e) {
-                    MainWindow.sendBotMessage("No task found!");
+                    Main.getMainWindow().sendBotMessage("No task found!");
                 } finally {
-                    MainWindow.setBotSilence(false);
+                    Main.getMainWindow().setBotSilence(false);
                 }
             }
-            MainWindow.setBotSilence(false);
+            Main.getMainWindow().setBotSilence(false);
             Tasklist.listTasks();
             sc.close();
         } catch (IOException e) {
-            MainWindow.sendBotMessage("An error occured loading file");
+            Main.getMainWindow().sendBotMessage("An error occured loading file");
         }
     }
 }

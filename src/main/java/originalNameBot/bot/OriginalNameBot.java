@@ -2,7 +2,7 @@ package originalnamebot.bot;
 
 import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
-import originalnamebot.ui.MainWindow;
+import originalnamebot.ui.Main;
 import originalnamebot.utils.FileManager;
 import originalnamebot.utils.Parser;
 
@@ -15,7 +15,7 @@ public class OriginalNameBot {
      * Initializes the application
      */
     public static void init() {
-        MainWindow.sendBotMessage(String.valueOf(BotLines.GREETING));
+        Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.GREETING));
         FileManager.initFile();
     }
 
@@ -27,12 +27,12 @@ public class OriginalNameBot {
         try {
             String command = Parser.obtainCommand(input);
             if (command.equals("bye")) {
-                MainWindow.exit();
+                Main.getMainWindow().exit();
             } else {
                 Parser.parseCommand(input);
             }
         } catch (IllegalCommandException | NoTaskFoundException e) {
-            MainWindow.sendBotMessage(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
+            Main.getMainWindow().sendBotMessage(BotLines.UNKNOWN_COMMAND + ": " + e.getMessage());
         }
     }
 }

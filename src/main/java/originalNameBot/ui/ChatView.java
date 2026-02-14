@@ -1,5 +1,6 @@
 package originalnamebot.ui;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -9,6 +10,7 @@ import javafx.scene.layout.VBox;
  */
 public class ChatView extends ScrollPane {
 
+    @FXML
     private VBox dialogueContainer;
 
     /**
