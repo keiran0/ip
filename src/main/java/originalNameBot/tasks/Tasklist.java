@@ -20,6 +20,7 @@ public class Tasklist {
     public static void listTasks() {
         if (tasks.size() == 0) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_TASKS));
+            return;
         }
         StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < tasks.size(); i++) {
