@@ -29,6 +29,7 @@ public class DialogBox extends HBox {
             this.setAlignment(Pos.TOP_LEFT);
             DisplayPicture picture = new DisplayPicture("/images/1.png");
             this.getChildren().addAll(picture, this.text);
+
         } else {
             this.setAlignment(Pos.TOP_RIGHT);
             DisplayPicture picture = new DisplayPicture("/images/Untitled.png");
