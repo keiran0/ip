@@ -5,7 +5,10 @@
          xmlns:fx="http://javafx.com/fxml/1"
          prefHeight="535"
          prefWidth="385"
-         fitToWidth="true">
+         fitToWidth="true"
+         hbarPolicy="NEVER"
+         hvalue="1.0"
+         vvalue="1.0">
     <content>
         <VBox fx:id="dialogueContainer" />
     </content>

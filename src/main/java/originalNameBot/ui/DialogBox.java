@@ -1,5 +1,6 @@
 package originalnamebot.ui;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -9,7 +10,12 @@ import javafx.scene.layout.HBox;
  * Contains factory methods to create new dialog boxes.
  */
 public class DialogBox extends HBox {
+
+    @FXML
     private Label text;
+
+    @FXML
+    private DisplayPicture displayPicture;
 
     /**
      * Creates a DialogBox with text and optional profile picture.

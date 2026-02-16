@@ -1,0 +1,11 @@
+<?import javafx.scene.image.ImageView?>
+
+
+<fx:root type="ImageView"
+         xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fitHeight="100.0"
+         fitWidth="100.0">
+
+
+</fx:root>

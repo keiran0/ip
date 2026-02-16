@@ -1,11 +1,11 @@
 package originalnamebot.ui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
 
 /**
  * ChatView is the upper portion of the user interface.
@@ -28,6 +28,7 @@ public class ChatView extends ScrollPane {
             System.out.println("Something went wrong with the window rendering.");
             e.printStackTrace();
         }
+        this.dialogueContainer.heightProperty().addListener((observable) -> this.setVvalue(1.0));
     }
 
     /**

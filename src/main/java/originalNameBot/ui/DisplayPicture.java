@@ -1,5 +1,8 @@
 package originalnamebot.ui;
 
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -13,10 +16,17 @@ public class DisplayPicture extends ImageView {
      * @param filepath Image filepath.
      */
     public DisplayPicture(String filepath) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DisplayPicture.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+        } catch (IOException e) {
+            System.out.println("Something went wrong with the window rendering.");
+            e.printStackTrace();
+        }
         Image image = new Image(getClass().getResourceAsStream(filepath));
         setImage(image);
-        setFitWidth(100.0);
-        setFitHeight(100.0);
     }
 
 }

@@ -10,13 +10,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="originalnamebot.ui.MainWindow">
     <children>
-        <ChatView fx:id="chatView"
-                  hbarPolicy="NEVER"
-                  hvalue="1.0"
-                  prefHeight="557.0"
-                  prefWidth="400.0"
-                  vvalue="1.0">
-        </ChatView>
+        <ChatView fx:id="chatView"/>
         <TextField fx:id="userInput"
                    layoutY="558.0"
                    onAction="#handleUserInput"
