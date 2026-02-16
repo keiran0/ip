@@ -35,7 +35,7 @@ public class Parser {
      * @param input User input
      */
     public static boolean isValid(String input) {
-        return Pattern.matches(VALID_COMMANDS, input);
+        return Pattern.matches(VALID_COMMANDS, input.trim());
     }
 
     /**
