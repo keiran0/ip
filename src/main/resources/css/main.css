@@ -6,11 +6,16 @@
 .text-field {
     -fx-background-color: #d9ffe2;
     -fx-font: 20px "Arial";
+    -fx-border-color: white;
+    -fx-border-radius: 15 0 0 0;
+    -fx-background-radius: 15 0 0 0;
 }
 
 .button {
     -fx-background-color: rgb(159, 245, 240);
     -fx-font: italic bold 16px "Arial";
+    -fx-border-radius: 0 15 0 0;
+    -fx-background-radius: 0 15 0 0;
 }
 
 .button:hover {

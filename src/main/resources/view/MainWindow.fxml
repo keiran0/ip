@@ -4,11 +4,37 @@
 <?import javafx.scene.layout.*?>
 <?import originalnamebot.ui.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="root" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="originalnamebot.ui.MainWindow">
+<AnchorPane maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="600.0"
+            prefWidth="400.0"
+            styleClass="root"
+            stylesheets="@../css/main.css"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="originalnamebot.ui.MainWindow">
     <children>
-        <ChatView fx:id="chatView" prefHeight="558.0" prefWidth="400.0" />
-        <TextField fx:id="userInput" layoutX="-1.0" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="335.0" style="-fx-border-color: white; -fx-border-radius: 15 0 0 0; -fx-background-radius: 15 0 0 0;" styleClass="text-field" AnchorPane.bottomAnchor="1.0" />
-        <Button fx:id="sendButton" layoutX="333.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="67.0" style="-fx-border-radius: 0 15 0 0; -fx-background-radius: 0 15 0 0;" text="Send" />
+        <ChatView fx:id="chatView"
+                  prefHeight="558.0"
+                  prefWidth="400.0" />
+        <TextField fx:id="userInput"
+                   layoutX="-1.0" layoutY="558.0"
+                   onAction="#handleUserInput"
+                   prefHeight="41.0"
+                   prefWidth="335.0"
+                   styleClass="text-field"
+                   AnchorPane.bottomAnchor="1.0" />
+        <Button fx:id="sendButton"
+                layoutX="333.0"
+                layoutY="558.0"
+                mnemonicParsing="false"
+                onAction="#handleUserInput"
+                prefHeight="41.0"
+                prefWidth="67.0"
+                styleClass="button"
+                text="Send" />
 
     </children>
 </AnchorPane>
