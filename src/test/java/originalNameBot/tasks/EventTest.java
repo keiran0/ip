@@ -57,6 +57,7 @@ public class EventTest {
                 "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
         String expected = "[E][ ] Submit assignment (from: " + dateFirst.toString() + " to: "
                 + dateSecond.toString() + ")";
+        assertEquals(expected, event.toString());
     }
 
     /**
