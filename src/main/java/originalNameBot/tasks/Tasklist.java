@@ -19,7 +19,7 @@ public class Tasklist {
      */
     public static void listTasks() {
         if (tasks.size() == 0) {
-            Main.getMainWindow().sendBotMessage("You have no tasks.");
+            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_TASKS));
         }
         StringBuilder sb = new StringBuilder("");
         for (int i = 0; i < tasks.size(); i++) {
@@ -104,7 +104,7 @@ public class Tasklist {
      */
     public static void countTasks() {
         if (tasks.size() == 0) {
-            Main.getMainWindow().sendBotMessage("You have no tasks");
+            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_TASKS));
         } else if (tasks.size() == 1) {
             Main.getMainWindow().sendBotMessage("You have 1 task in the list. Hurry up and finish it.");
         } else {
