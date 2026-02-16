@@ -2,6 +2,7 @@ package originalnamebot.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
@@ -12,6 +13,9 @@ import originalnamebot.exceptions.NoTaskFoundException;
  */
 public class ParserTest {
 
+    /**
+     * Tests that parsing an invalid event format throws.
+     */
     @Test
     public void testParseEventInvalidFormatThrows() {
         assertThrows(IllegalCommandException.class, () -> {
@@ -19,6 +23,9 @@ public class ParserTest {
         });
     }
 
+    /**
+     * Tests that a non-numeric mark argument throws NoTaskFoundException.
+     */
     @Test
     public void testParseMarkNonNumberThrows() throws IllegalCommandException, NoTaskFoundException {
         assertThrows(NoTaskFoundException.class, () -> {
@@ -26,6 +33,9 @@ public class ParserTest {
         });
     }
 
+    /**
+     * Tests that parseFind returns the search keyword.
+     */
     @Test
     public void testParseFindReturns() throws IllegalCommandException {
         String input = "find keyword";

@@ -69,8 +69,7 @@ public enum BotLines {
         public String toString() {
             return "An error occurred handling files";
         }
-    }
-    ,
+    },
     ERROR_SAVING {
         @Override
         public String toString() {

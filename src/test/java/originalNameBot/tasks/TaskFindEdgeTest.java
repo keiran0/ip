@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
  */
 public class TaskFindEdgeTest {
 
+    /**
+     * Tests that `find` is case-insensitive and trims whitespace.
+     */
     @Test
     public void testFindIsCaseInsensitiveAndTrimmed() {
         Todo t = new Todo("Write Code", "todo Write Code");

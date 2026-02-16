@@ -3,6 +3,7 @@ package originalnamebot.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
@@ -14,11 +15,17 @@ import originalnamebot.tasks.Todo;
  */
 public class ParserEdgeCaseTest {
 
+    /**
+     * Tests that `isValid` accepts commands with surrounding whitespace.
+     */
     @Test
     public void testIsValidRejectsLeadingWhitespace() {
         assertTrue(Parser.isValid("  todo something"));
     }
 
+    /**
+     * Tests parsing a todo command that has leading/trailing whitespace.
+     */
     @Test
     public void testParseTodoAcceptsLeadingWhitespace() throws IllegalCommandException {
         String raw = "  todo spaced";
@@ -27,17 +34,26 @@ public class ParserEdgeCaseTest {
         assertEquals("[T][ ] spaced", t.toString());
     }
 
+    /**
+     * Tests that mixed-case commands are not considered valid.
+     */
     @Test
     public void testIsValidMixedCaseIsFalse() {
         assertFalse(Parser.isValid("Todo something"));
     }
 
+    /**
+     * Tests parsing a `mark` command with extra spaces.
+     */
     @Test
     public void testParseMarkWithExtraSpaces() throws IllegalCommandException, NoTaskFoundException {
         int idx = Parser.parseMark("  mark   5  ");
         assertEquals(5, idx);
     }
 
+    /**
+     * Tests `find` parsing trims internal/trailing whitespace.
+     */
     @Test
     public void testParseFindTrimsWhitespace() throws IllegalCommandException {
         String result = Parser.parseFind("  find   keyword  ");
