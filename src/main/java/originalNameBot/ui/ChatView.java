@@ -1,9 +1,11 @@
 package originalnamebot.ui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 /**
  * ChatView is the upper portion of the user interface.
@@ -14,19 +16,18 @@ public class ChatView extends ScrollPane {
     private VBox dialogueContainer;
 
     /**
-     * Creates a ChatView with a specific size and layout.
+     * Loads ChatView through FXML.
      */
     public ChatView() {
-        VBox dialogContainer = new VBox();
-        this.dialogueContainer = dialogContainer;
-        this.dialogueContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        this.dialogueContainer.heightProperty().addListener((observable) -> this.setVvalue(1.0));
-        this.setContent(this.dialogueContainer);
-        this.setPrefSize(385, 535);
-        this.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        this.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        this.setVvalue(1.0);
-        this.setFitToWidth(true);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ChatView.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try {
+            loader.load();
+        } catch (IOException e) {
+            System.out.println("Something went wrong with the window rendering.");
+            e.printStackTrace();
+        }
     }
 
     /**
