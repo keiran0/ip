@@ -120,13 +120,14 @@ public class Tasklist {
      * @param filter String to filter the task's description by.
      */
     public static void findTask(String filter) {
-        Main.getMainWindow().sendBotMessage("Here are the tasks you found:");
+        StringBuilder sb = new StringBuilder("Here are the tasks you found:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
             if (task.find(filter)) {
-                Main.getMainWindow().sendBotMessage((i + 1) + ". " + task.toString());
+                sb.append((i + 1) + ". " + task.toString() + "\n");
             }
         }
+        Main.getMainWindow().sendBotMessage(sb.toString());
     }
 
 }
