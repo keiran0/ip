@@ -119,6 +119,12 @@ public class Tasklist {
      * @param filter String to filter the task's description by.
      */
     public static void findTask(String filter) {
+
+        if (tasks.size() == 0) {
+            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_TASKS));
+            return;
+        }
+
         StringBuilder sb = new StringBuilder("Here are the tasks you found:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
