@@ -9,10 +9,14 @@ public class Todo extends Task {
      * Constructor for Todo task.
      *
      * @param description Description of Todo.
-     * @param input Input string provided by the user. Used to save/load from data.
      */
-    public Todo(String description, String input) {
-        super(description, input);
+    public Todo(String description, boolean isDone) {
+        super(description, isDone);
+    }
+
+    @Override
+    public String getFileString() {
+        return "T|" + super.getFileString();
     }
 
     @Override

@@ -41,6 +41,7 @@ public class Tasklist {
             Task task = tasks.get(i - 1);
             task.markDone();
             String output = BotLines.TASK_DELETED + "\n" + task;
+            FileManager.writeFile(tasks);
             Main.getMainWindow().sendBotMessage(output);
         } catch (IndexOutOfBoundsException e) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
@@ -59,6 +60,7 @@ public class Tasklist {
             Task task = tasks.get(i - 1);
             task.markNotDone();
             String output = BotLines.TASK_UNMARKED + "\n" + task;
+            FileManager.writeFile(tasks);
             Main.getMainWindow().sendBotMessage(output);
         } catch (IndexOutOfBoundsException e) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
@@ -72,6 +74,10 @@ public class Tasklist {
      * @param task The task to add to the task list.
      */
     public static void addTask(Task task) {
+
+        if (task == null) {
+            return;
+        }
 
         tasks.add(task);
         Main.getMainWindow().sendBotMessage("added: " + task.toString() + "\n" + countTasks());

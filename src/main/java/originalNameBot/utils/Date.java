@@ -20,6 +20,7 @@ public class Date {
     private boolean hasTime;
     private LocalDateTime datetime;
     private LocalDate date;
+    private String dateString;
 
     /**
      * Creates a new Date.
@@ -43,6 +44,7 @@ public class Date {
                 this.hasTime = true;
                 this.datetime = datetime;
                 this.date = date;
+                this.dateString = input;
             } catch (DateTimeException e) {
                 throw new IllegalCommandException(
                         "Provide valid datetime format! Check valid day/month/year/time values");
@@ -53,6 +55,7 @@ public class Date {
                 this.hasTime = false;
                 this.date = date;
                 this.datetime = null;
+                this.dateString = input;
             } catch (DateTimeException e) {
                 throw new IllegalCommandException(
                         "Provide valid date! Check valid day/month/year values");
@@ -66,5 +69,13 @@ public class Date {
     public String toString() {
         String ret = hasTime ? Formatter.formatDateTime(datetime) : Formatter.formatDate(date);
         return ret;
+    }
+
+    /**
+     * Gets the dateString of the date. This is a valid date that can be passed in to the constructor.
+     * @return
+     */
+    public String getDateString() {
+        return this.dateString;
     }
 }

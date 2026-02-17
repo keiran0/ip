@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * Tests for the Todo class.
  */
 public class TodoTest {
-    private static Todo todo = new Todo("Submit assignment", "todo Submit assignment");
+    private static Todo todo = new Todo("Submit assignment", false);
 
     /**
      * Tests the string representation of a Todo task.

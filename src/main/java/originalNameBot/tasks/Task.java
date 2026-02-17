@@ -7,17 +7,15 @@ public class Task {
 
     private String description;
     private boolean isDone = false;
-    private String creationString;
 
     /**
      * Constructor for Task.
      *
      * @param description Description of Task.
-     * @param input Input string provided by the user. Used to save/load from data.
      */
-    public Task(String description, String input) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.creationString = input.strip();
+        this.isDone = isDone;
     }
 
     @Override
@@ -43,14 +41,6 @@ public class Task {
         this.isDone = false;
     }
 
-    /**
-     * Returns the string used to create the task.
-     *
-     * @return String used to create the task.
-     */
-    public String getCreationString() {
-        return this.creationString;
-    }
 
     /**
      * Returns the task's isDone attribute.
@@ -69,6 +59,18 @@ public class Task {
      */
     public boolean find(String input) {
         return this.description.toLowerCase().contains(input.toLowerCase().strip());
+    }
+
+    /**
+     * Obtains the file string needed for saving/loading from the txt file.
+     * @return File string.
+     */
+    public String getFileString() {
+        String doneString = "F";
+        if (this.isDone) {
+            doneString = "T";
+        }
+        return this.description + "|" + doneString;
     }
 
 }

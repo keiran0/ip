@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.exceptions.NoTaskFoundException;
-import originalnamebot.tasks.Todo;
 
 /**
  * Edge-case tests for Parser behaviour with whitespace and mixed-case inputs.
@@ -21,17 +20,6 @@ public class ParserEdgeCaseTest {
     @Test
     public void testIsValidRejectsLeadingWhitespace() {
         assertTrue(Parser.isValid("  todo something"));
-    }
-
-    /**
-     * Tests parsing a todo command that has leading/trailing whitespace.
-     */
-    @Test
-    public void testParseTodoAcceptsLeadingWhitespace() throws IllegalCommandException {
-        String raw = "  todo spaced";
-        Todo t = Parser.parseTodo(raw);
-        assertEquals("todo spaced", t.getCreationString());
-        assertEquals("[T][ ] spaced", t.toString());
     }
 
     /**

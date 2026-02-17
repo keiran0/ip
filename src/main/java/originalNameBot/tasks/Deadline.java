@@ -14,16 +14,20 @@ public class Deadline extends Task {
      *
      * @param description Description of deadline.
      * @param by End Date (optional: time) of deadline.
-     * @param input Input string provided by the user. Used to save/load from data.
      */
-    public Deadline(String description, Date by, String input) {
-        super(description, input);
+    public Deadline(String description, Date by, boolean isDone) {
+        super(description, isDone);
         this.by = by;
     }
 
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.by + ")";
+    }
+
+    @Override
+    public String getFileString() {
+        return "D|" + super.getFileString() + "|" + this.by.getDateString();
     }
 
 }

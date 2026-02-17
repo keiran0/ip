@@ -15,10 +15,9 @@ public class Event extends Task {
      * @param description Description of event.
      * @param from Start date (optional: time) of event.
      * @param to End date (optional: time) of event.
-     * @param input Input string provided by the user. Used to save/load from data.
      */
-    public Event(String description, Date from, Date to, String input) {
-        super(description, input);
+    public Event(String description, Date from, Date to, boolean isDone) {
+        super(description, isDone);
         this.from = from;
         this.to = to;
     }
@@ -27,4 +26,11 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
     }
+
+    @Override
+    public String getFileString() {
+        return "E|" + super.getFileString() + "|" + this.from.getDateString() + "|" + this.to.getDateString();
+    }
+
+
 }

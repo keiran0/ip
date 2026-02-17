@@ -128,7 +128,7 @@ public class Parser {
             throw new IllegalCommandException("Invalid todo format");
         }
         String description = m.group(1);
-        return new Todo(description, input);
+        return new Todo(description, false);
     }
 
     /**
@@ -147,7 +147,7 @@ public class Parser {
         }
         String description = m.group(1);
         Date date = new Date(m.group(2));
-        return new Deadline(description, date, input);
+        return new Deadline(description, date, false);
     }
 
     /**
@@ -167,7 +167,7 @@ public class Parser {
         String description = m.group(1);
         Date from = new Date(m.group(2));
         Date to = new Date(m.group(3));
-        return new Event(description, from, to, input);
+        return new Event(description, from, to, false);
     }
 
     /**

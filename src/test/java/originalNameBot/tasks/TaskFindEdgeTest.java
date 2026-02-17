@@ -15,7 +15,7 @@ public class TaskFindEdgeTest {
      */
     @Test
     public void testFindIsCaseInsensitiveAndTrimmed() {
-        Todo t = new Todo("Write Code", "todo Write Code");
+        Todo t = new Todo("Write Code", false);
         assertTrue(t.find("write"));
         assertTrue(t.find("  write  "));
         assertTrue(t.find("CODE"));

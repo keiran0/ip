@@ -8,9 +8,11 @@ import java.util.Scanner;
 
 import originalnamebot.bot.BotLines;
 import originalnamebot.exceptions.IllegalCommandException;
-import originalnamebot.exceptions.NoTaskFoundException;
+import originalnamebot.tasks.Deadline;
+import originalnamebot.tasks.Event;
 import originalnamebot.tasks.Task;
 import originalnamebot.tasks.Tasklist;
+import originalnamebot.tasks.Todo;
 import originalnamebot.ui.Main;
 
 /**
@@ -50,7 +52,12 @@ public class FileManager {
         try {
             FileWriter writer = new FileWriter(filePath);
             for (Task task : ls) {
-                writer.write(task.getCreationString() + "\n");
+
+                StringBuilder sb = new StringBuilder("");
+
+                sb.append(task.getFileString() + "\n");
+
+                writer.write(sb.toString());
             }
             writer.close();
         } catch (IOException e) {
@@ -65,18 +72,10 @@ public class FileManager {
         try {
             Scanner sc = new Scanner(new File(filePath));
             Main.getMainWindow().sendBotMessage(BotLines.LOADING_TASKS + filePath);
+            Main.getMainWindow().setBotSilence(true);
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
-                try {
-                    Main.getMainWindow().setBotSilence(true);
-                    Parser.parseCommand(input);
-                } catch (IllegalCommandException e) {
-                    Main.getMainWindow().sendBotMessage(BotLines.WRONG_COMMAND_IN_SAVE + input);
-                } catch (NoTaskFoundException e) {
-                    Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
-                } finally {
-                    Main.getMainWindow().setBotSilence(false);
-                }
+                Tasklist.addTask(parseLine(input));
             }
             Main.getMainWindow().setBotSilence(false);
             Tasklist.listTasks();
@@ -84,5 +83,49 @@ public class FileManager {
         } catch (IOException e) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.ERROR_LOADING));
         }
+    }
+
+    /**
+     * Helper method used to parse a single line in the tasks.txt file.
+     * @return Task
+     */
+    private static Task parseLine(String line) {
+        String[] split = line.split("\\|");
+        String description = split[1];
+
+        boolean isDone = false;
+
+        if (split[2].equals("T")) {
+            isDone = true;
+        }
+
+        if (split[0].equals("T")) {
+            return new Todo(description, isDone);
+        }
+
+        if (split[0].equals("E")) {
+
+            try {
+                Date from = new Date(split[3]);
+                Date to = new Date(split[4]);
+                return new Event(description, from, to, isDone);
+            } catch (IllegalCommandException e) {
+                Main.getMainWindow().sendBotMessage("Unable to load task due to " + e.getMessage());
+            }
+
+        }
+
+        if (split[0].equals("D")) {
+            try {
+                Date by = new Date(split[3]);
+                return new Deadline(description, by, isDone);
+            } catch (IllegalCommandException e) {
+                Main.getMainWindow().sendBotMessage("Unable to load task due to " + e.getMessage());
+
+            }
+        }
+
+        return null;
+
     }
 }

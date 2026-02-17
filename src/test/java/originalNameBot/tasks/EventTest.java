@@ -23,9 +23,7 @@ public class EventTest {
     public void testEventMixedTimesToString() throws IllegalCommandException {
         Date dateWithTime = new Date(EventTest.dateWithTimeString);
         Date dateWithoutTime = new Date(EventTest.dateWithoutTimeString);
-        Event event = new Event("Submit assignment", dateWithTime, dateWithoutTime,
-                "event Submit assignment /from " + dateWithTimeString + " /to "
-                        + dateWithoutTimeString);
+        Event event = new Event("Submit assignment", dateWithTime, dateWithoutTime, false);
         String expected = "[E][ ] Submit assignment (from: " + dateWithTime.toString() + " to: "
                 + dateWithoutTime.toString() + ")";
         assertEquals(expected, event.toString());
@@ -38,9 +36,7 @@ public class EventTest {
     public void testEventDatesOnlyToString() throws IllegalCommandException {
         Date dateWithoutTimeFirst = new Date(EventTest.dateWithoutTimeString);
         Date dateWithoutTimeSecond = new Date(EventTest.dateWithoutTimeString);
-        Event event = new Event(EventTest.description, dateWithoutTimeFirst, dateWithoutTimeSecond,
-                "event " + description + " /from " + dateWithoutTimeString + " /to "
-                        + dateWithoutTimeString);
+        Event event = new Event(EventTest.description, dateWithoutTimeFirst, dateWithoutTimeSecond, false);
         String expected = "[E][ ] Submit assignment (from: " + dateWithoutTimeFirst.toString()
                 + " to: " + dateWithoutTimeSecond.toString() + ")";
         assertEquals(expected, event.toString());
@@ -53,8 +49,7 @@ public class EventTest {
     public void testEventTimesOnlyToString() throws IllegalCommandException {
         Date dateFirst = new Date("2026-08-08 1900");
         Date dateSecond = new Date("2026-12-11 1800");
-        Event event = new Event("Submit assignment", dateFirst, dateSecond,
-                "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
+        Event event = new Event("Submit assignment", dateFirst, dateSecond, false);
         String expected = "[E][ ] Submit assignment (from: " + dateFirst.toString() + " to: "
                 + dateSecond.toString() + ")";
         assertEquals(expected, event.toString());
@@ -68,7 +63,7 @@ public class EventTest {
         Date dateFirst = new Date("2026-08-08 1900");
         Date dateSecond = new Date("2026-12-11 1800");
         Event event = new Event("Submit assignment", dateFirst, dateSecond,
-                "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
+                false);
         event.markDone();
         assertEquals(event.isDone(), true);
     }
@@ -81,7 +76,7 @@ public class EventTest {
         Date dateFirst = new Date("2026-08-08 1900");
         Date dateSecond = new Date("2026-12-11 1800");
         Event event = new Event("Submit assignment", dateFirst, dateSecond,
-                "event Submit assignment /from 2026-08-08 1900 /to 2026-12-11 1800");
+                false);
         event.markDone();
         event.markNotDone();
         assertEquals(event.isDone(), false);
