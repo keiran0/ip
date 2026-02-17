@@ -37,6 +37,12 @@ public class Tasklist {
      *        on the left of the task when the 'list' command is run) to mark as done
      */
     public static void markTask(int i) {
+
+        if (i == 0) {
+            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_ZEROETH_TASK));
+            return;
+        }
+
         try {
             Task task = tasks.get(i - 1);
             task.markDone();
@@ -56,6 +62,12 @@ public class Tasklist {
      *        on the left of the task when the 'list' command is run) to mark as not done
      */
     public static void unmarkTask(int i) {
+
+        if (i == 0) {
+            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_ZEROETH_TASK));
+            return;
+        }
+
         try {
             Task task = tasks.get(i - 1);
             task.markNotDone();
@@ -94,6 +106,12 @@ public class Tasklist {
      *        on the left of the task when the 'list' command is run)
      */
     public static void deleteTask(int i) {
+
+        if (i == 0) {
+            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_ZEROETH_TASK));
+            return;
+        }
+
         try {
             Task task = tasks.get(i - 1);
             tasks.remove(i - 1);

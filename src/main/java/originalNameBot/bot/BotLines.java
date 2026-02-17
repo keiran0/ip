@@ -28,6 +28,12 @@ public enum BotLines {
             return "Invalid format for task type!";
         }
     },
+    NO_ZEROETH_TASK {
+        @Override
+        public String toString() {
+            return "Tasks start at number 1!";
+        }
+    },
     NO_SUCH_TASK_AT_INDEX {
         @Override
         public String toString() {
