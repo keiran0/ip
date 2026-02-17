@@ -73,8 +73,7 @@ public class Tasklist {
     public static void addTask(Task task) {
 
         tasks.add(task);
-        Main.getMainWindow().sendBotMessage("added: " + task.toString());
-        countTasks();
+        Main.getMainWindow().sendBotMessage("added: " + task.toString() + "\n" + countTasks());
         FileManager.writeFile(tasks);
 
     }
@@ -91,9 +90,8 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             tasks.remove(i - 1);
-            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.TASK_DELETED));
-            Main.getMainWindow().sendBotMessage(task.toString());
-            countTasks();
+            String output = BotLines.TASK_DELETED + "\n" + task.toString() + "\n" + countTasks();
+            Main.getMainWindow().sendBotMessage(output);
             FileManager.writeFile(tasks);
         } catch (IndexOutOfBoundsException e) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
@@ -103,14 +101,13 @@ public class Tasklist {
     /**
      * Prints a message that indicates the task count.
      */
-    public static void countTasks() {
+    public static String countTasks() {
         if (tasks.size() == 0) {
-            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_TASKS));
+            return String.valueOf(BotLines.NO_TASKS);
         } else if (tasks.size() == 1) {
-            Main.getMainWindow().sendBotMessage("You have 1 task in the list. Hurry up and finish it.");
+            return "You have 1 task in the list. Hurry up and finish it.";
         } else {
-            Main.getMainWindow().sendBotMessage(
-                    "You have " + tasks.size() + " tasks in the list. Hurry up and finish them.");
+            return "You have " + tasks.size() + " tasks in the list. Hurry up and finish them.";
         }
 
     }
