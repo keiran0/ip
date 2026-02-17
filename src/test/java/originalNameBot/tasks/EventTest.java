@@ -23,9 +23,9 @@ public class EventTest {
     public void testEventMixedTimesToString() throws IllegalCommandException {
         Date dateWithTime = new Date(EventTest.dateWithTimeString);
         Date dateWithoutTime = new Date(EventTest.dateWithoutTimeString);
-        Event event = new Event("Submit assignment", dateWithTime, dateWithoutTime, false);
-        String expected = "[E][ ] Submit assignment (from: " + dateWithTime.toString() + " to: "
-                + dateWithoutTime.toString() + ")";
+        Event event = new Event("Submit assignment", dateWithoutTime, dateWithTime, false);
+        String expected = "[E][ ] Submit assignment (from: " + dateWithoutTime.toString() + " to: "
+                + dateWithTime.toString() + ")";
         assertEquals(expected, event.toString());
     }
 
