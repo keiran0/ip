@@ -40,8 +40,8 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             task.markDone();
-            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.TASK_DONE));
-            Main.getMainWindow().sendBotMessage(task.toString());
+            String output = BotLines.TASK_DELETED + "\n" + task;
+            Main.getMainWindow().sendBotMessage(output);
         } catch (IndexOutOfBoundsException e) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }
@@ -58,7 +58,8 @@ public class Tasklist {
         try {
             Task task = tasks.get(i - 1);
             task.markNotDone();
-            Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.TASK_UNMARKED));
+            String output = BotLines.TASK_UNMARKED + "\n" + task;
+            Main.getMainWindow().sendBotMessage(output);
         } catch (IndexOutOfBoundsException e) {
             Main.getMainWindow().sendBotMessage(String.valueOf(BotLines.NO_SUCH_TASK_AT_INDEX));
         }

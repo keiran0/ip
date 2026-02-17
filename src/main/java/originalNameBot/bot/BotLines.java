@@ -49,7 +49,7 @@ public enum BotLines {
     TASK_UNMARKED {
         @Override
         public String toString() {
-            return "Why?";
+            return "Why? Unmarked: ";
         }
     },
     NO_TASKS {
