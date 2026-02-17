@@ -1,5 +1,6 @@
 package originalnamebot.tasks;
 
+import originalnamebot.exceptions.IllegalCommandException;
 import originalnamebot.utils.Date;
 
 /**
@@ -16,8 +17,11 @@ public class Event extends Task {
      * @param from Start date (optional: time) of event.
      * @param to End date (optional: time) of event.
      */
-    public Event(String description, Date from, Date to, boolean isDone) {
+    public Event(String description, Date from, Date to, boolean isDone) throws IllegalCommandException {
         super(description, isDone);
+        if (to.compareTo(from) < 0) {
+            throw new IllegalCommandException("'from' must be earlier than 'to'!");
+        }
         this.from = from;
         this.to = to;
     }

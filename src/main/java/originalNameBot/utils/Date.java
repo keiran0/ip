@@ -78,4 +78,33 @@ public class Date {
     public String getDateString() {
         return this.dateString;
     }
+
+    /**
+     * Compares this date with the param date.
+     * @param other Date to compare to.
+     * @return Integer. If positive, this date is larger (more in the future) than the param. If 0, the date is equal.
+     */
+    public int compareTo(Date other) {
+        
+       if (this.hasTime & other.hasTime) {
+           return this.datetime.compareTo(other.datetime);
+       }
+
+       int dateComparison = this.date.compareTo(other.date);
+       if (dateComparison != 0) {
+           return dateComparison;
+       }
+
+       // same date
+       if (this.hasTime && !other.hasTime) {
+           return 1;
+       }
+
+       if (!this.hasTime && other.hasTime) {
+           return -1;
+       }
+
+       return 0;
+
+    }
 }
