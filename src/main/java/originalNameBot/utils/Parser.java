@@ -105,8 +105,8 @@ public class Parser {
         Matcher m = p.matcher(input.strip());
 
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid command, valid commands include mark, " +
-                    "unmark, todo, event, deadline, delete, list, find and bye.");
+            throw new IllegalCommandException("Invalid command, valid commands include mark, "
+                    + "unmark, todo, event, deadline, delete, list, find and bye.");
         }
 
         assert isValid(input);
@@ -144,8 +144,8 @@ public class Parser {
         Pattern p = Pattern.compile(DEADLINE);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid deadline format, " +
-                    "format is 'deadline description /by date \n" + BotLines.DATE_FORMAT_INFORMATION);
+            throw new IllegalCommandException("Invalid deadline format, "
+                    + "format is 'deadline description /by date \n" + BotLines.DATE_FORMAT_INFORMATION);
         }
         String description = m.group(1);
         Date date = new Date(m.group(2));
@@ -164,8 +164,8 @@ public class Parser {
         Pattern p = Pattern.compile(EVENT);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid event format, " +
-                    "format is 'event description /from date /to date' \n" + BotLines.DATE_FORMAT_INFORMATION);
+            throw new IllegalCommandException("Invalid event format, "
+                    + "format is 'event description /from date /to date' \n" + BotLines.DATE_FORMAT_INFORMATION);
         }
         String description = m.group(1);
         Date from = new Date(m.group(2));
