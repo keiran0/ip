@@ -99,6 +99,12 @@ public enum BotLines {
         public String toString() {
             return "Wrong command detected in save file: ";
         }
+    },
+    DATE_FORMAT_INFORMATION {
+        @Override
+        public String toString() {
+            return "Date can be in yyyy-MM-DD HHmm or yyyy-MM-dd format.";
+        }
     }
 
 }

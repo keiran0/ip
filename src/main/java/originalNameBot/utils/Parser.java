@@ -105,7 +105,8 @@ public class Parser {
         Matcher m = p.matcher(input.strip());
 
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid command");
+            throw new IllegalCommandException("Invalid command, valid commands include mark, " +
+                    "unmark, todo, event, deadline, delete, list, find and bye.");
         }
 
         assert isValid(input);
@@ -125,7 +126,7 @@ public class Parser {
         Pattern p = Pattern.compile(TODO);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid todo format");
+            throw new IllegalCommandException("Invalid todo format, format is 'todo description'");
         }
         String description = m.group(1);
         return new Todo(description, false);
@@ -143,7 +144,8 @@ public class Parser {
         Pattern p = Pattern.compile(DEADLINE);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid deadline format");
+            throw new IllegalCommandException("Invalid deadline format, " +
+                    "format is 'deadline description /by date \n" + BotLines.DATE_FORMAT_INFORMATION);
         }
         String description = m.group(1);
         Date date = new Date(m.group(2));
@@ -162,7 +164,8 @@ public class Parser {
         Pattern p = Pattern.compile(EVENT);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid event format");
+            throw new IllegalCommandException("Invalid event format, " +
+                    "format is 'event description /from date /to date' \n" + BotLines.DATE_FORMAT_INFORMATION);
         }
         String description = m.group(1);
         Date from = new Date(m.group(2));
@@ -183,7 +186,7 @@ public class Parser {
         Pattern p = Pattern.compile(MARK);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid mark format");
+            throw new IllegalCommandException("Invalid mark format, format is 'mark number'");
         }
         try {
             return Integer.parseInt(m.group(1));
@@ -206,7 +209,7 @@ public class Parser {
         Pattern p = Pattern.compile(UNMARK);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid unmark format");
+            throw new IllegalCommandException("Invalid unmark format, format is 'unmark number'");
         }
         try {
             return Integer.parseInt(m.group(1));
@@ -229,7 +232,7 @@ public class Parser {
         Pattern p = Pattern.compile(DELETE);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid delete format");
+            throw new IllegalCommandException("Invalid delete format, format is 'delete number'");
         }
         try {
             return Integer.parseInt(m.group(1));
@@ -250,7 +253,7 @@ public class Parser {
         Pattern p = Pattern.compile(FIND);
         Matcher m = p.matcher(input.strip());
         if (!m.find()) {
-            throw new IllegalCommandException("Invalid find format");
+            throw new IllegalCommandException("Invalid find format, format is 'find description_partial_match'");
         } else {
             return m.group(1);
         }
