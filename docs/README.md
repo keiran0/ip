@@ -32,6 +32,9 @@ folder/
 ├─ originalnamebot.jar
 ```
 
+WARNING: Do not edit the tasks.txt file. Doing so may corrupt the program. If corrupted, delete the tasks.txt file to force a reset.
+
+
 ## Common Terms
 
 - A Task refers to todos, deadlines, and events.
@@ -64,6 +67,7 @@ All valid commands are shown below (case-sensitive)
 - `todo`
 - `event`
 - `deadline`
+- `bye`
 
 Invalid commands will be rejected.
 
@@ -126,7 +130,7 @@ Expected behaviour:
 
 ## Find
 
-A Task can be deleted using the following command:
+A Task can be found using the following command:
 ```
 find abc
 ```
@@ -185,4 +189,10 @@ Example of deleting Task Number 1:
 delete 1
 ```
 
+## Bye
 
+The following command will quit the program:
+
+```
+bye
+```
